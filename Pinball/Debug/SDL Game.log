@@ -1,5 +1,4 @@
 ﻿  Application.cpp
-  log.cpp
   Main.cpp
   ModuleAudio.cpp
   ModuleInput.cpp
@@ -67,5 +66,7 @@ C:\Users\allen\Documents\GitHub\Pinball\Pinball\ModuleSceneIntro.cpp(173,9): war
 C:\Users\allen\Documents\GitHub\Pinball\Pinball\ModuleSceneIntro.cpp(173,6): warning C4101: 'x': variable local sin referencia
   ModuleTextures.cpp
   ModuleWindow.cpp
+  log.cpp
   Generando código...
+  LINK : no se encontró C:\Users\allen\Documents\GitHub\Pinball\Pinball\Debug\2D Physics - class 4.exe o no lo generó el último vínculo incremental; ejecutando vínculo completo
   SDL Game.vcxproj -> C:\Users\allen\Documents\GitHub\Pinball\Pinball\Debug\2D Physics - class 4.exe
