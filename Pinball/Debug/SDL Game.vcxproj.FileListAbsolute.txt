@@ -1,2 +1,4 @@
 C:\Users\allen\Documents\GitHub\Pinball\Pinball\Debug\2D Physics - class 4.exe
 C:\Users\allen\Documents\GitHub\Pinball\Pinball\Debug\2D Physics - class 4.pdb
+C:\GitHub\Pinball\Pinball\Debug\2D Physics - class 4.exe
+C:\GitHub\Pinball\Pinball\Debug\2D Physics - class 4.pdb

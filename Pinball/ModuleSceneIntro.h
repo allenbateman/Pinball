@@ -5,6 +5,7 @@
 #include "Globals.h"
 
 class PhysBody;
+struct SDL_Texture;
 
 class ModuleSceneIntro : public Module
 {
@@ -21,6 +22,7 @@ public:
 	p2List<PhysBody*> circles;
 	p2List<PhysBody*> boxes;
 	p2List<PhysBody*> ricks;
+	p2List<PhysBody*> chains;
 
 	PhysBody* sensor;
 	bool sensed;
@@ -28,6 +30,10 @@ public:
 	SDL_Texture* circle;
 	SDL_Texture* box;
 	SDL_Texture* rick;
+	SDL_Texture* background1;
+	SDL_Texture* background2;
+	SDL_Texture* background3;
+	SDL_Texture* background4;
 	uint bonus_fx;
 	p2Point<int> ray;
 	bool ray_on;
