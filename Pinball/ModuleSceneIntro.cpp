@@ -55,10 +55,14 @@ bool ModuleSceneIntro::CleanUp()
 // Update: draw background
 update_status ModuleSceneIntro::Update()
 {
-	App->renderer->Blit(background1, 0, 0);
-	App->renderer->Blit(background2, 0, 0);
-	App->renderer->Blit(background3, 0, 0);
-	App->renderer->Blit(background4, 0, 0);
+	b2Vec2 backgroundPosition;
+	int x = 0, y = 0;
+	backgroundPosition.Set(PIXEL_TO_METERS(x), PIXEL_TO_METERS(y));
+
+	App->renderer->Blit(background1, backgroundPosition.x, backgroundPosition.y);
+	App->renderer->Blit(background2, backgroundPosition.x, backgroundPosition.y);
+	App->renderer->Blit(background3, backgroundPosition.x, backgroundPosition.y);
+	App->renderer->Blit(background4, backgroundPosition.x, backgroundPosition.y);
 	
 	/*if(App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 	{
