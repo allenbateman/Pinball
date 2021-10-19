@@ -13,7 +13,9 @@ public:
 	virtual ~ModulePlayer();
 
 	bool Start();
+	update_status PreUpdate();
 	update_status Update();
+	update_status PostUpdate();
 	bool CleanUp();
 
 public:
@@ -24,7 +26,17 @@ public:
 	SDL_Texture* flipperRight;
 	SDL_Texture* flipperLeft;
 	SDL_Texture* flipperUp;
-	iPoint plungerPos, flipperRPos, flipperLPos, flipperUPos = { 0,0 };
+	b2Vec2 plungerPos, flipperRPos, flipperLPos, flipperUPos = { 0,0 };
+
+	p2List<PhysBody*> flippers;
+
+	PhysBody* flipperLBody;
+	PhysBody* flipperUBody;
+	PhysBody* flipperRBody;
+
+	PhysBody* flipperLJoint;
+	PhysBody* flipperUJoint;
+	PhysBody* flipperRJoint;
 	
 
 };
