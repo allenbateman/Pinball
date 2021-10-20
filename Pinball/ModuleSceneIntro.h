@@ -34,6 +34,7 @@ public:
 	SDL_Texture* background2;
 	SDL_Texture* background3;
 	SDL_Texture* background4;
+	SDL_Texture* ball;
 	uint bonus_fx;
 	p2Point<int> ray;
 	bool ray_on;

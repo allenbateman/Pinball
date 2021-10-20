@@ -34,9 +34,14 @@ public:
 	PhysBody* flipperUBody;
 	PhysBody* flipperRBody;
 
-	PhysBody* flipperLJoint;
-	PhysBody* flipperUJoint;
-	PhysBody* flipperRJoint;
+	PhysBody* anchorL;
+	PhysBody* anchorU;
+	PhysBody* anchorR;
+
+	b2RevoluteJoint* jointL;
+	b2RevoluteJoint* jointU;
+	b2RevoluteJoint* jointR;
+
 	
 
 };

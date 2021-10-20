@@ -75,10 +75,10 @@ update_status ModulePhysics::PreUpdate()
 	return UPDATE_CONTINUE;
 }
 
-PhysBody* ModulePhysics::CreateCircle(int x, int y, int radius)
+PhysBody* ModulePhysics::CreateCircle(int x, int y, int radius,b2BodyType type)
 {
 	b2BodyDef body;
-	body.type = b2_dynamicBody;
+	body.type = type;
 	body.position.Set(PIXEL_TO_METERS(x), PIXEL_TO_METERS(y));
 
 	b2Body* b = world->CreateBody(&body);
@@ -99,10 +99,10 @@ PhysBody* ModulePhysics::CreateCircle(int x, int y, int radius)
 	return pbody;
 }
 
-PhysBody* ModulePhysics::CreateRectangle(int x, int y, int width, int height)
+PhysBody* ModulePhysics::CreateRectangle(int x, int y, int width, int height, b2BodyType type)
 {
 	b2BodyDef body;
-	body.type = b2_dynamicBody;
+	body.type = type;
 	body.position.Set(PIXEL_TO_METERS(x), PIXEL_TO_METERS(y));
 
 	b2Body* b = world->CreateBody(&body);
@@ -185,6 +185,37 @@ PhysBody* ModulePhysics::CreateChain(int x, int y, int* points, int size, b2Body
 	return pbody;
 }
 
+b2Joint* ModulePhysics::JointBodies(PhysBody* bodyA, PhysBody* bodyB, b2JointType type)
+{
+	b2JointDef jointdef;
+	jointdef.type = type;
+	jointdef.bodyA = bodyA->body;
+	jointdef.bodyB = bodyB->body;
+	jointdef.collideConnected = false;
+
+	b2Joint* joint = (b2Joint *) world->CreateJoint(&jointdef);
+	return joint;
+}
+//revolute Joint
+b2RevoluteJoint* ModulePhysics::RevoluteJoint(PhysBody* bodyA, PhysBody* bodyB)
+{
+	b2RevoluteJointDef jointdef;
+	jointdef.bodyA = bodyA->body;
+	jointdef.bodyB = bodyB->body;
+	jointdef.collideConnected = false;
+
+	jointdef.localAnchorA.Set(0, 0);
+	b2Vec2 bPos;
+	bPos.Set(PIXEL_TO_METERS(bodyA->body->GetPosition().x), PIXEL_TO_METERS(bodyA->body->GetPosition().y));
+	jointdef.localAnchorB.Set(bPos.x,bPos.y);
+	jointdef.referenceAngle = 0;
+	jointdef.enableLimit = true;
+	jointdef.lowerAngle = 0 * DEGTORAD;
+	jointdef.upperAngle = -45 * DEGTORAD;
+
+	b2RevoluteJoint* joint = (b2RevoluteJoint*)world->CreateJoint(&jointdef);
+	return joint;
+}
 // 
 update_status ModulePhysics::PostUpdate()
 {

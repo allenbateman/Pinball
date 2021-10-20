@@ -21,14 +21,14 @@ bool ModulePlayer::Start()
 {
 	LOG("Loading player");
 
-	plunger = App->textures->Load("pinball/PinballAssets/PinballSprites/plunger.png");
+	plunger		 = App->textures->Load("pinball/PinballAssets/PinballSprites/plunger.png");
 	flipperRight = App->textures->Load("pinball/PinballAssets/PinballSprites/flipper.png");
-	flipperLeft = App->textures->Load("pinball/PinballAssets/PinballSprites/flipper.png");
-	flipperUp = App->textures->Load("pinball/PinballAssets/PinballSprites/flipper.png");
+	flipperLeft	 = App->textures->Load("pinball/PinballAssets/PinballSprites/flipper.png");
+	flipperUp	 = App->textures->Load("pinball/PinballAssets/PinballSprites/flipper.png");
 
 	plungerPos = {382 ,664 };
-	flipperLPos = { 105,668 };
-	flipperRPos = { 205,668 };
+	flipperLPos = { 119,680 };
+	flipperRPos = { 260,680 };
 	flipperUPos = { 32,377 };
 
 	int flipperL_vertex[18] = {
@@ -42,10 +42,7 @@ bool ModulePlayer::Start()
 		0, 9,
 		2, 16
 	};
-	//flippers.add(App->physics->CreateChain(flipperLPos.x, flipperLPos.y, flipperL_vertex, 18, b2_kinematicBody));
-	flipperLBody = App->physics->CreateChain(flipperLPos.x, flipperLPos.y, flipperL_vertex, 18, b2_kinematicBody);
-	//flippers.add(App->physics->CreateChain(flipperUPos.x, flipperUPos.y, flipperL_vertex, 18, b2_kinematicBody));
-	flipperUBody = App->physics->CreateChain(flipperUPos.x, flipperUPos.y, flipperL_vertex, 18, b2_kinematicBody);
+
 	int flipperR_vertex[16] = {
 		53, 0,
 		2, 22,
@@ -56,8 +53,25 @@ bool ModulePlayer::Start()
 		64, 9,
 		54, 0
 	};
-	//flippers.add(App->physics->CreateChain(flipperRPos.x, flipperRPos.y, flipperR_vertex, 16, b2_kinematicBody));
+
+	//flipper bodies
+	flipperLBody = App->physics->CreateChain(flipperLPos.x, flipperLPos.y, flipperL_vertex, 18, b2_dynamicBody);
+	flipperUBody = App->physics->CreateChain(flipperUPos.x, flipperUPos.y, flipperL_vertex, 18, b2_kinematicBody);
 	flipperRBody = App->physics->CreateChain(flipperRPos.x, flipperRPos.y, flipperR_vertex, 16, b2_kinematicBody);
+
+	//anchor bodies
+	anchorL = App->physics->CreateCircle(119, 680, 3, b2_kinematicBody);
+	anchorU = App->physics->CreateCircle(44,  387, 3, b2_kinematicBody);
+	anchorR = App->physics->CreateCircle(260, 680, 3, b2_kinematicBody);
+
+	jointL = App->physics->RevoluteJoint(anchorL, flipperLBody);
+	jointL->SetLimits(-65 * DEGTORAD, 0* DEGTORAD);
+	jointU = App->physics->RevoluteJoint(anchorU, flipperUBody);
+	jointU->SetLimits(-65 * DEGTORAD, 0 * DEGTORAD);
+	jointR = App->physics->RevoluteJoint(anchorR, flipperRBody);
+
+	
+
 	return true;
 }
 
@@ -84,17 +98,24 @@ update_status ModulePlayer::Update()
 
 	if (App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
 	{
-		
+	
+		LOG("ANGLE L:%f , ANGLE LIMIT:%f", jointL->GetJointAngle() * RADTODEG, jointL->GetLowerLimit()*RADTODEG);
+		if(jointL->GetJointAngle()* RADTODEG >= jointL->GetLowerLimit())
+			flipperLBody->body->SetAngularVelocity(-30);
+		else
+			flipperLBody->body->SetAngularVelocity(0);
 
-		flipperLBody->body->SetTransform(flipperLBody->body->GetPosition(),-45);
-		flipperUBody->body->SetTransform(flipperUBody->body->GetPosition(),-45);
-		
+		if (jointU->GetJointAngle() * RADTODEG >= jointU->GetLowerLimit())
+			flipperUBody->body->SetAngularVelocity(-30);
+		else
+			flipperUBody->body->SetAngularVelocity(0);
 	}
-	if (App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_UP)
-	{
+	else {
+
 		flipperLBody->body->SetTransform(flipperLBody->body->GetPosition(), 0);
 		flipperUBody->body->SetTransform(flipperUBody->body->GetPosition(), 0);
 	}
+
 
 	if (App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
 	{
@@ -106,9 +127,12 @@ update_status ModulePlayer::Update()
 	}
 
 	App->renderer->Blit(plunger, plungerPos.x, plungerPos.y);
+	//right
 	App->renderer->Blit(flipperRight, flipperRPos.x, flipperRPos.y, SDL_FLIP_HORIZONTAL);
-	App->renderer->Blit(flipperLeft, flipperLPos.x, flipperLPos.y,SDL_FLIP_NONE);
-	App->renderer->Blit(flipperUp, flipperUPos.x, flipperUPos.y);
+	//left
+	App->renderer->Blit(flipperLeft, flipperLPos.x, flipperLPos.y, SDL_FLIP_NONE, 0, 1, 1, jointL->GetJointAngle() * RADTODEG, anchorL->body->GetPosition().x, anchorL->body->GetPosition().y);
+	//upper
+	App->renderer->Blit(flipperUp, flipperUPos.x, flipperUPos.y, SDL_FLIP_NONE, 0, 1, 1, jointU->GetJointAngle() * RADTODEG, anchorU->body->GetPosition().x, anchorU->body->GetPosition().y);
 
 	return UPDATE_CONTINUE;
 }
