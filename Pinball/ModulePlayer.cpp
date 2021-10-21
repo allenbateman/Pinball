@@ -29,7 +29,7 @@ bool ModulePlayer::Start()
 	plungerPos = {382 ,664 };
 	flipperLPos = {119,680 };
 	flipperRPos = { 260,680 };
-	flipperUPos = { 32,377 };
+	flipperUPos = { 44,386 };
 
 	int flipperL_vertex[18] = {
 		3, 17,
