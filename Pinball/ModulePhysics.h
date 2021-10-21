@@ -47,7 +47,7 @@ public:
 	PhysBody* CreateRectangleSensor(int x, int y, int width, int height);
 	PhysBody* CreateChain(int x, int y, int* points, int size, b2BodyType bodyType);
 	b2Joint* JointBodies(PhysBody* bodyA, PhysBody* bodyB, b2JointType type);
-	b2RevoluteJoint* RevoluteJoint(PhysBody* bodyA, PhysBody* bodyB);
+	b2RevoluteJoint* RevoluteJoint(PhysBody* bodyA, b2Vec2 localCenterA, PhysBody* bodyB, b2Vec2 localCenterB,bool collide, bool enableLimit, float referenceAngle, float lowerAngle, float upperAngle);
 
 	// b2ContactListener ---
 	void BeginContact(b2Contact* contact);

@@ -198,21 +198,25 @@ b2Joint* ModulePhysics::JointBodies(PhysBody* bodyA, PhysBody* bodyB, b2JointTyp
 	return joint;
 }
 //revolute Joint
-b2RevoluteJoint* ModulePhysics::RevoluteJoint(PhysBody* bodyA, PhysBody* bodyB)
+b2RevoluteJoint* ModulePhysics::RevoluteJoint(PhysBody* bodyA,b2Vec2 localCenterA, PhysBody* bodyB, b2Vec2 localCenterB,bool collide, bool enableLimit, float referenceAngle,float lowerAngle,float upperAngle)
 {
 	b2RevoluteJointDef jointdef;
-	jointdef.bodyA = bodyA->body;
-	jointdef.bodyB = bodyB->body;
-	jointdef.collideConnected = false;
 
-	jointdef.localAnchorA.Set(0, 0);
-	b2Vec2 bPos;
-	bPos.Set(PIXEL_TO_METERS(bodyA->body->GetPosition().x), PIXEL_TO_METERS(bodyA->body->GetPosition().y));
-	jointdef.localAnchorB.Set(bPos.x,bPos.y);
-	jointdef.referenceAngle = 0;
-	jointdef.enableLimit = true;
-	jointdef.lowerAngle = 0 * DEGTORAD;
-	jointdef.upperAngle = -45 * DEGTORAD;
+	jointdef.bodyA = bodyA->body;
+	jointdef.localAnchorA.Set(PIXEL_TO_METERS(localCenterA.x), PIXEL_TO_METERS(localCenterA.y));
+
+	jointdef.bodyB = bodyB->body;
+	jointdef.localAnchorB.Set(PIXEL_TO_METERS(localCenterB.x), PIXEL_TO_METERS(localCenterB.y));
+
+	jointdef.collideConnected = collide;
+
+	jointdef.referenceAngle = referenceAngle;
+	jointdef.enableLimit = enableLimit;
+	jointdef.lowerAngle = lowerAngle* DEGTORAD;
+	jointdef.upperAngle = upperAngle * DEGTORAD;
+
+	LOG("JOINT-> anchor A.x:%i A.y:%i", METERS_TO_PIXELS(jointdef.localAnchorA.x), METERS_TO_PIXELS(jointdef.localAnchorA.y));
+	LOG("JOINT-> anchor B.x:%i B.y:%i", METERS_TO_PIXELS(jointdef.localAnchorB.x), METERS_TO_PIXELS(jointdef.localAnchorB.y));
 
 	b2RevoluteJoint* joint = (b2RevoluteJoint*)world->CreateJoint(&jointdef);
 	return joint;
