@@ -25,6 +25,7 @@ public:
 	p2List<PhysBody*> chains;
 
 	PhysBody* sensor;
+	PhysBody* background2B;
 	bool sensed;
 
 	SDL_Texture* circle;
