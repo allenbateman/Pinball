@@ -1,36 +1,9 @@
-﻿  ModulePlayer.cpp
-C:\Users\allenbn\Documents\GitHub\Pinball\Pinball\ModulePlayer.cpp(66,69): warning C4244: 'argumento': conversión de 'float32' a 'int'; posible pérdida de datos
-C:\Users\allenbn\Documents\GitHub\Pinball\Pinball\ModulePlayer.cpp(66,54): warning C4244: 'argumento': conversión de 'float32' a 'int'; posible pérdida de datos
-C:\Users\allenbn\Documents\GitHub\Pinball\Pinball\ModulePlayer.cpp(67,69): warning C4244: 'argumento': conversión de 'float32' a 'int'; posible pérdida de datos
-C:\Users\allenbn\Documents\GitHub\Pinball\Pinball\ModulePlayer.cpp(67,54): warning C4244: 'argumento': conversión de 'float32' a 'int'; posible pérdida de datos
-C:\Users\allenbn\Documents\GitHub\Pinball\Pinball\ModulePlayer.cpp(68,74): warning C4244: 'argumento': conversión de 'float32' a 'int'; posible pérdida de datos
-C:\Users\allenbn\Documents\GitHub\Pinball\Pinball\ModulePlayer.cpp(68,56): warning C4244: 'argumento': conversión de 'float32' a 'int'; posible pérdida de datos
-C:\Users\allenbn\Documents\GitHub\Pinball\Pinball\ModulePlayer.cpp(72,77): warning C4244: 'argumento': conversión de 'float32' a 'int'; posible pérdida de datos
-C:\Users\allenbn\Documents\GitHub\Pinball\Pinball\ModulePlayer.cpp(72,56): warning C4244: 'argumento': conversión de 'float32' a 'int'; posible pérdida de datos
-C:\Users\allenbn\Documents\GitHub\Pinball\Pinball\ModulePlayer.cpp(73,79): warning C4244: 'argumento': conversión de 'float32' a 'int'; posible pérdida de datos
-C:\Users\allenbn\Documents\GitHub\Pinball\Pinball\ModulePlayer.cpp(73,57): warning C4244: 'argumento': conversión de 'float32' a 'int'; posible pérdida de datos
-C:\Users\allenbn\Documents\GitHub\Pinball\Pinball\ModulePlayer.cpp(74,77): warning C4244: 'argumento': conversión de 'float32' a 'int'; posible pérdida de datos
-C:\Users\allenbn\Documents\GitHub\Pinball\Pinball\ModulePlayer.cpp(74,56): warning C4244: 'argumento': conversión de 'float32' a 'int'; posible pérdida de datos
-C:\Users\allenbn\Documents\GitHub\Pinball\Pinball\ModulePlayer.cpp(101,124): warning C4244: 'argumento': conversión de 'float32' a 'int'; posible pérdida de datos
-C:\Users\allenbn\Documents\GitHub\Pinball\Pinball\ModulePlayer.cpp(101,109): warning C4244: 'argumento': conversión de 'float32' a 'int'; posible pérdida de datos
-C:\Users\allenbn\Documents\GitHub\Pinball\Pinball\ModulePlayer.cpp(101,94): warning C4244: 'argumento': conversión de 'float32' a 'int'; posible pérdida de datos
-C:\Users\allenbn\Documents\GitHub\Pinball\Pinball\ModulePlayer.cpp(101,68): warning C4244: 'argumento': conversión de 'float32' a 'int'; posible pérdida de datos
-C:\Users\allenbn\Documents\GitHub\Pinball\Pinball\ModulePlayer.cpp(102,130): warning C4244: 'argumento': conversión de 'float32' a 'int'; posible pérdida de datos
-C:\Users\allenbn\Documents\GitHub\Pinball\Pinball\ModulePlayer.cpp(102,115): warning C4244: 'argumento': conversión de 'float32' a 'int'; posible pérdida de datos
-C:\Users\allenbn\Documents\GitHub\Pinball\Pinball\ModulePlayer.cpp(102,100): warning C4244: 'argumento': conversión de 'float32' a 'int'; posible pérdida de datos
-C:\Users\allenbn\Documents\GitHub\Pinball\Pinball\ModulePlayer.cpp(102,72): warning C4244: 'argumento': conversión de 'float32' a 'int'; posible pérdida de datos
-C:\Users\allenbn\Documents\GitHub\Pinball\Pinball\ModulePlayer.cpp(180,55): warning C4244: 'argumento': conversión de 'float32' a 'int'; posible pérdida de datos
-C:\Users\allenbn\Documents\GitHub\Pinball\Pinball\ModulePlayer.cpp(180,41): warning C4244: 'argumento': conversión de 'float32' a 'int'; posible pérdida de datos
-C:\Users\allenbn\Documents\GitHub\Pinball\Pinball\ModulePlayer.cpp(183,183): warning C4244: 'argumento': conversión de 'float32' a 'int'; posible pérdida de datos
-C:\Users\allenbn\Documents\GitHub\Pinball\Pinball\ModulePlayer.cpp(183,168): warning C4244: 'argumento': conversión de 'float32' a 'int'; posible pérdida de datos
-C:\Users\allenbn\Documents\GitHub\Pinball\Pinball\ModulePlayer.cpp(183,80): warning C4244: 'argumento': conversión de 'float32' a 'int'; posible pérdida de datos
-C:\Users\allenbn\Documents\GitHub\Pinball\Pinball\ModulePlayer.cpp(183,49): warning C4244: 'argumento': conversión de 'float32' a 'int'; posible pérdida de datos
-C:\Users\allenbn\Documents\GitHub\Pinball\Pinball\ModulePlayer.cpp(185,181): warning C4244: 'argumento': conversión de 'float32' a 'int'; posible pérdida de datos
-C:\Users\allenbn\Documents\GitHub\Pinball\Pinball\ModulePlayer.cpp(185,166): warning C4244: 'argumento': conversión de 'float32' a 'int'; posible pérdida de datos
-C:\Users\allenbn\Documents\GitHub\Pinball\Pinball\ModulePlayer.cpp(185,78): warning C4244: 'argumento': conversión de 'float32' a 'int'; posible pérdida de datos
-C:\Users\allenbn\Documents\GitHub\Pinball\Pinball\ModulePlayer.cpp(185,47): warning C4244: 'argumento': conversión de 'float32' a 'int'; posible pérdida de datos
-C:\Users\allenbn\Documents\GitHub\Pinball\Pinball\ModulePlayer.cpp(188,184): warning C4244: 'argumento': conversión de 'float32' a 'int'; posible pérdida de datos
-C:\Users\allenbn\Documents\GitHub\Pinball\Pinball\ModulePlayer.cpp(188,169): warning C4244: 'argumento': conversión de 'float32' a 'int'; posible pérdida de datos
-C:\Users\allenbn\Documents\GitHub\Pinball\Pinball\ModulePlayer.cpp(188,81): warning C4244: 'argumento': conversión de 'float32' a 'int'; posible pérdida de datos
-C:\Users\allenbn\Documents\GitHub\Pinball\Pinball\ModulePlayer.cpp(188,50): warning C4244: 'argumento': conversión de 'float32' a 'int'; posible pérdida de datos
-  SDL Game.vcxproj -> C:\Users\allenbn\Documents\GitHub\Pinball\Pinball\Debug\2D Physics - class 4.exe
+﻿  ModulePhysics.cpp
+C:\GitHub\Pinball\Pinball\ModulePhysics.cpp(40,8): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\GitHub\Pinball\Pinball\ModulePhysics.cpp(277,23): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\GitHub\Pinball\Pinball\ModulePhysics.cpp(278,25): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\GitHub\Pinball\Pinball\ModulePhysics.cpp(321,20): warning C4018: '<': signed/unsigned mismatch
+C:\GitHub\Pinball\Pinball\ModulePhysics.cpp(538,13): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\GitHub\Pinball\Pinball\ModulePhysics.cpp(539,13): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\GitHub\Pinball\Pinball\ModulePhysics.cpp(545,27): warning C4244: 'return': conversion from 'float32' to 'int', possible loss of data
+  SDL Game.vcxproj -> C:\GitHub\Pinball\Pinball\Debug\2D Physics - class 4.exe

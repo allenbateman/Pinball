@@ -26,6 +26,7 @@ public:
 
 	PhysBody* sensor;
 	PhysBody* background2B;
+	PhysBody* background2B2;
 	bool sensed;
 
 	SDL_Texture* circle;

@@ -46,6 +46,161 @@ bool ModulePhysics::Start()
 
 	b2Body* big_ball = world->CreateBody(&body);
 
+	int background2_vertex[124] = {
+	397, 355,
+	396, 356,
+	395, -186,
+	392, -202,
+	387, -211,
+	385, -218,
+	380, -227,
+	374, -236,
+	369, -243,
+	362, -251,
+	354, -257,
+	344, -265,
+	335, -268,
+	325, -274,
+	315, -277,
+	299, -279,
+	91, -280,
+	80, -277,
+	68, -274,
+	54, -269,
+	46, -263,
+	38, -257,
+	34, -251,
+	27, -242,
+	25, -237,
+	25, -249,
+	22, -256,
+	16, -259,
+	11, -257,
+	7, -252,
+	8, -33,
+	22, -3,
+	34, -8,
+	23, -34,
+	25, -40,
+	50, 18,
+	40, 21,
+	33, 28,
+	29, 20,
+	27, 13,
+	26, 7,
+	8, 8,
+	10, 27,
+	10, 33,
+	10, 44,
+	11, 55,
+	13, 66,
+	15, 73,
+	18, 81,
+	21, 90,
+	24, 100,
+	29, 110,
+	32, 116,
+	38, 125,
+	41, 130,
+	42, 137,
+	10, 172,
+	10, 353,
+	23, 353,
+	25, 316,
+	147, 358,
+	1, 358
+	};
+
+	/*int background2LD1_vertex[30] = {
+	25, 562,
+	25, 650,
+	32, 657,
+	37, 657,
+	42, 658,
+	113, 687,
+	112, 683,
+	113, 676,
+	116, 672,
+	121, 670,
+	34, 637,
+	30, 632,
+	28, 627,
+	29, 564,
+	25, 562
+	};
+
+	int background2LD2_vertex[12] =
+	{
+		44, 567,
+	44, 626,
+	46, 627,
+	48, 626,
+	48, 568,
+	44, 567
+	};
+
+	int background2LD3_vertex[22] =
+	{
+		63, 573,
+	63, 629,
+	65, 631,
+	68, 633,
+	75, 635,
+	98, 646,
+	104, 646,
+	107, 642,
+	71, 572,
+	68, 571,
+	63, 573
+	};
+
+	int background2RD1_vertex[20] =
+	{
+		352, 564,
+	352, 654,
+	265, 686,
+	264, 677,
+	257, 669,
+	344, 637,
+	347, 633,
+	348, 625,
+	349, 564,
+	351, 562
+	};
+
+	int background2RD2_vertex[12] =
+	{
+		334, 567,
+	334, 624,
+	332, 627,
+	330, 625,
+	330, 568,
+	332, 566
+	};
+
+	int background2RD3_vertex[20] =
+	{
+		315, 573,
+	315, 627,
+	312, 632,
+	280, 645,
+	275, 646,
+	272, 644,
+	272, 640,
+	306, 573,
+	310, 570,
+	314, 571
+	};*/
+
+	//Background colliders
+	background2B = App->physics->CreateChain(0, 360, background2_vertex, 124, b2_kinematicBody);
+	/*background2B2 = App->physics->CreateChain(0, 360, background2LD1_vertex, 30, b2_kinematicBody);
+	background2B3 = App->physics->CreateChain(0, 360, background2LD2_vertex, 12, b2_kinematicBody);
+	background2B4 = App->physics->CreateChain(0, 360, background2LD3_vertex, 22, b2_kinematicBody);
+	background2B5 = App->physics->CreateChain(0, 360, background2RD1_vertex, 20, b2_kinematicBody);
+	background2B6 = App->physics->CreateChain(0, 360, background2RD2_vertex, 12, b2_kinematicBody);
+	background2B7 = App->physics->CreateChain(0, 360, background2RD3_vertex, 20, b2_kinematicBody);*/
+
 	
 	//b2CircleShape shape;
 	//shape.m_radius = PIXEL_TO_METERS(diameter) * 0.5f;
@@ -176,7 +331,7 @@ PhysBody* ModulePhysics::CreateChain(int x, int y, int* points, int size, b2Body
 
 	b->CreateFixture(&fixture);
 
-	delete p;
+	//delete p;
 
 	PhysBody* pbody = new PhysBody();
 	pbody->body = b;

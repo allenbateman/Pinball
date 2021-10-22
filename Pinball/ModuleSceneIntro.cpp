@@ -31,7 +31,7 @@ bool ModuleSceneIntro::Start()
 	background4 = App->textures->Load("pinball/PinballAssets/PinballSprites/layer3.png");
 	ball = App->textures->Load("pinball/PinballAssets/PinballSprites/pinball.png");
 
-	int background2_vertex[124] = {
+	/*int background2_vertex[124] = {
 	397, 355,
 	396, 356,
 	395, -186,
@@ -96,11 +96,27 @@ bool ModuleSceneIntro::Start()
 	1, 358
 	};
 
+	int background2LD1_vertex[30] = {
+	25, 562,
+	25, 650,
+	32, 657,
+	37, 657,
+	42, 658,
+	113, 687,
+	112, 683,
+	113, 676,
+	116, 672,
+	121, 670,
+	34, 637,
+	30, 632,
+	28, 627,
+	29, 564,
+	25, 562
+	};
+	//Background colliders
 	background2B = App->physics->CreateChain(0, 360, background2_vertex, 124, b2_kinematicBody);
-
-	
-	
-
+	background2B2 = App->physics->CreateChain(0, 360, background2LD1_vertex, 30, b2_kinematicBody);
+	*/
 	//sensor = App->physics->CreateRectangleSensor(SCREEN_WIDTH / 2, SCREEN_HEIGHT, SCREEN_WIDTH, 50);
 
 	return ret;

@@ -49,6 +49,15 @@ public:
 	b2Joint* JointBodies(PhysBody* bodyA, PhysBody* bodyB, b2JointType type);
 	b2RevoluteJoint* RevoluteJoint(PhysBody* bodyA, b2Vec2 localCenterA, PhysBody* bodyB, b2Vec2 localCenterB,bool collide, bool enableLimit, float referenceAngle, float lowerAngle, float upperAngle);
 	b2DistanceJoint* DistanceJoint(PhysBody* bodyA, b2Vec2 localCenterA, PhysBody* bodyB, b2Vec2 localCenterB, float distance);
+
+	PhysBody* background2B;
+	PhysBody* background2B2;
+	PhysBody* background2B3;
+	PhysBody* background2B4;
+	PhysBody* background2B5;
+	PhysBody* background2B6;
+	PhysBody* background2B7;
+
 	// b2ContactListener ---
 	void BeginContact(b2Contact* contact);
 
