@@ -22,11 +22,15 @@ public:
 
 	int lives; 
 	int score;
+
 	SDL_Texture* plunger;
 	SDL_Texture* flipperRight;
 	SDL_Texture* flipperLeft;
 	SDL_Texture* flipperUp;
-	b2Vec2 plungerPos, flipperRPos, flipperLPos, flipperUPos = { 0,0 };
+
+	b2Vec2  flipperRPos, flipperLPos, flipperUPos = { 0,0 };
+	b2Vec2  flipperRAnchorPos, flipperLAnchorPos, flipperUAnchorPos = { 0,0 };
+	b2Vec2 plungerPos, plungerAnchorPos = { 0,0 };
 
 	p2List<PhysBody*> flippers;
 
@@ -38,9 +42,18 @@ public:
 	PhysBody* anchorU;
 	PhysBody* anchorR;
 
+
+	PhysBody* plungerBody;
+	PhysBody* plungerAnchor;
+	b2Vec2 plungerSize;
+
+
+	b2DistanceJoint* plungerJoint;
+
 	b2RevoluteJoint* jointL;
 	b2RevoluteJoint* jointU;
 	b2RevoluteJoint* jointR;
+
 
 	
 

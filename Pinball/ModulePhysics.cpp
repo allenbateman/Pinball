@@ -215,11 +215,27 @@ b2RevoluteJoint* ModulePhysics::RevoluteJoint(PhysBody* bodyA,b2Vec2 localCenter
 	jointdef.lowerAngle = lowerAngle* DEGTORAD;
 	jointdef.upperAngle = upperAngle * DEGTORAD;
 
-	LOG("JOINT-> anchor A.x:%i A.y:%i", METERS_TO_PIXELS(jointdef.localAnchorA.x), METERS_TO_PIXELS(jointdef.localAnchorA.y));
-	LOG("JOINT-> anchor B.x:%i B.y:%i", METERS_TO_PIXELS(jointdef.localAnchorB.x), METERS_TO_PIXELS(jointdef.localAnchorB.y));
+	//LOG("JOINT-> anchor A.x:%i A.y:%i", METERS_TO_PIXELS(jointdef.localAnchorA.x), METERS_TO_PIXELS(jointdef.localAnchorA.y));
+	//LOG("JOINT-> anchor B.x:%i B.y:%i", METERS_TO_PIXELS(jointdef.localAnchorB.x), METERS_TO_PIXELS(jointdef.localAnchorB.y));
 
 	b2RevoluteJoint* joint = (b2RevoluteJoint*)world->CreateJoint(&jointdef);
 	return joint;
+}
+b2DistanceJoint* ModulePhysics::DistanceJoint(PhysBody* bodyA, b2Vec2 localCenterA, PhysBody* bodyB, b2Vec2 localCenterB, float distance)
+{
+	b2DistanceJointDef jointDef;
+
+	jointDef.bodyA = bodyA->body;
+	jointDef.localAnchorA.Set(PIXEL_TO_METERS(localCenterA.x), PIXEL_TO_METERS(localCenterA.y));
+	jointDef.bodyB = bodyB->body;
+	jointDef.localAnchorB.Set(PIXEL_TO_METERS(localCenterB.x), PIXEL_TO_METERS(localCenterB.y));
+
+	jointDef.collideConnected = false;
+
+	jointDef.length = distance;
+
+
+	return nullptr;
 }
 // 
 update_status ModulePhysics::PostUpdate()

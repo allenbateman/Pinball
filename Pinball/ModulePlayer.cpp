@@ -27,9 +27,17 @@ bool ModulePlayer::Start()
 	flipperUp	 = App->textures->Load("pinball/PinballAssets/PinballSprites/flipper.png");
 
 	plungerPos = {382 ,664 };
+	plungerAnchorPos = {380 ,715 };
 	flipperLPos = {119,680 };
 	flipperRPos = { 260,680 };
-	flipperUPos = { 44,386 };
+	flipperUPos = { 45,388 };
+
+	flipperRAnchorPos = { 260, 680 };
+	flipperLAnchorPos = { 119, 680 };
+	flipperUAnchorPos = { 45,  388 };
+
+	plungerSize = { 15,5 };
+
 
 	int flipperL_vertex[18] = {
 		3, 17,
@@ -58,22 +66,42 @@ bool ModulePlayer::Start()
 	flipperLBody = App->physics->CreateChain(flipperLPos.x, flipperLPos.y, flipperL_vertex, 18, b2_dynamicBody);
 	flipperUBody = App->physics->CreateChain(flipperUPos.x, flipperUPos.y, flipperL_vertex, 18, b2_dynamicBody);
 	flipperRBody = App->physics->CreateChain(flipperRPos.x-64, flipperRPos.y-34, flipperR_vertex, 16, b2_dynamicBody);
+	
 
-	//anchor bodies
-	anchorL = App->physics->CreateCircle(119, 680, 3, b2_kinematicBody);
-	anchorU = App->physics->CreateCircle(44,  387, 3, b2_kinematicBody);
-	anchorR = App->physics->CreateCircle(260, 680, 3, b2_kinematicBody);
+	//anchor flipper bodies
+	anchorL = App->physics->CreateCircle(flipperLAnchorPos.x, flipperLAnchorPos.y, 3, b2_kinematicBody);
+	anchorU = App->physics->CreateCircle( flipperUAnchorPos.x,  flipperUAnchorPos.y, 3, b2_kinematicBody);
+	anchorR = App->physics->CreateCircle(flipperRAnchorPos.x, flipperRAnchorPos.y, 3, b2_kinematicBody);
 
+	//flipper joints
 	b2Vec2 localCenterA;//local center of the fixed body
 	b2Vec2 localCenterB;//local center of the flipper
 
-	localCenterA.Set(0,0);
+	localCenterA.Set(0, 0);
 	localCenterB.Set(9, 9);
-	jointL = App->physics->RevoluteJoint(anchorL, localCenterA, flipperLBody, localCenterB,false,true,0,-45,45);
-	jointU = App->physics->RevoluteJoint(anchorU, localCenterA, flipperUBody, localCenterB,false,true,0,-45,45);
+	jointL = App->physics->RevoluteJoint(anchorL, localCenterA, flipperLBody, localCenterB, false, true, 0, -45, 45);
+	jointU = App->physics->RevoluteJoint(anchorU, localCenterA, flipperUBody, localCenterB, false, true, 0, -45, 45);
 
 	localCenterB.Set(54, 9);
-	jointR = App->physics->RevoluteJoint(anchorR, localCenterA, flipperRBody, localCenterB,false,true,0,-45,45);	
+	jointR = App->physics->RevoluteJoint(anchorR, localCenterA, flipperRBody, localCenterB, false, true, 0, -45, 45);
+
+
+	//pungler
+
+		//set up local centers
+	b2Vec2 plungerlocalCenterBody;
+	b2Vec2 plungerlocalCenterAnchor;
+
+	plungerlocalCenterAnchor.x = plungerAnchorPos.x + plungerSize.x / 2;
+	plungerlocalCenterAnchor.y = plungerAnchorPos.y + plungerSize.y / 2;
+
+	plungerlocalCenterBody.x = plungerPos.x + plungerSize.x / 2;
+	plungerlocalCenterBody.y = plungerPos.y + plungerSize.y / 2;
+
+	plungerBody = App->physics->CreateRectangle(plungerlocalCenterBody.x, plungerlocalCenterBody.y, plungerSize.x, plungerSize.y, b2_kinematicBody);
+	plungerAnchor = App->physics->CreateRectangle(plungerlocalCenterAnchor.x, plungerlocalCenterAnchor.y, plungerSize.x, plungerSize.y, b2_staticBody);
+	plungerJoint = App->physics->DistanceJoint(plungerAnchor, plungerlocalCenterAnchor, plungerBody, plungerlocalCenterBody, 25);
+
 
 	return true;
 }
@@ -98,6 +126,12 @@ update_status ModulePlayer::PreUpdate()
 // Update: draw background
 update_status ModulePlayer::Update()
 {
+
+	if (App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
+	{
+
+	}
+
 
 	if (App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT) {
 	
