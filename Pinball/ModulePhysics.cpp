@@ -632,7 +632,25 @@ b2RevoluteJoint* ModulePhysics::RevoluteJoint(PhysBody* bodyA,b2Vec2 localCenter
 	b2RevoluteJoint* joint = (b2RevoluteJoint*)world->CreateJoint(&jointdef);
 	return joint;
 }
-b2DistanceJoint* ModulePhysics::DistanceJoint(PhysBody* bodyA, b2Vec2 localCenterA, PhysBody* bodyB, b2Vec2 localCenterB, float distance)
+b2PrismaticJoint* ModulePhysics::PrismaticJoint(PhysBody* bodyA, b2Vec2 localCenterA, PhysBody* bodyB, b2Vec2 localCenterB, float distance)
+{
+	b2PrismaticJointDef jointDef;
+
+	jointDef.bodyA = bodyA->body;
+	jointDef.localAnchorA.Set(PIXEL_TO_METERS(localCenterA.x), PIXEL_TO_METERS(localCenterA.y));
+	jointDef.bodyB = bodyB->body;
+	jointDef.localAnchorB.Set(PIXEL_TO_METERS(localCenterB.x), PIXEL_TO_METERS(localCenterB.y));
+	jointDef.localAxisA.Set(0, -1);
+	jointDef.enableLimit = true;
+	jointDef.lowerTranslation = PIXEL_TO_METERS(localCenterB.y);
+	jointDef.upperTranslation = PIXEL_TO_METERS(localCenterA.y);
+	jointDef.collideConnected = true;
+
+	b2PrismaticJoint* joint = (b2PrismaticJoint*)world->CreateJoint(&jointDef);
+
+	return nullptr;
+}
+b2DistanceJoint* ModulePhysics::DistanceJoint(PhysBody* bodyA, b2Vec2 localCenterA, PhysBody* bodyB, b2Vec2 localCenterB, bool collide, float distance, float frequency, float damping)
 {
 	b2DistanceJointDef jointDef;
 
@@ -640,11 +658,13 @@ b2DistanceJoint* ModulePhysics::DistanceJoint(PhysBody* bodyA, b2Vec2 localCente
 	jointDef.localAnchorA.Set(PIXEL_TO_METERS(localCenterA.x), PIXEL_TO_METERS(localCenterA.y));
 	jointDef.bodyB = bodyB->body;
 	jointDef.localAnchorB.Set(PIXEL_TO_METERS(localCenterB.x), PIXEL_TO_METERS(localCenterB.y));
-
-	jointDef.collideConnected = false;
-
 	jointDef.length = distance;
+	jointDef.frequencyHz = frequency;
+	jointDef.dampingRatio = damping;
+	jointDef.collideConnected = collide;
+	
 
+	b2DistanceJoint* joint = (b2DistanceJoint*)world->CreateJoint(&jointDef);
 
 	return nullptr;
 }

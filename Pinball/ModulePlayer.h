@@ -47,8 +47,11 @@ public:
 	PhysBody* plungerAnchor;
 	b2Vec2 plungerSize;
 
+	int flipperVelocity;
 
+	//b2PrismaticJoint* plungerJoint;
 	b2DistanceJoint* plungerJoint;
+	b2Vec2 plungerForce;
 
 	b2RevoluteJoint* jointL;
 	b2RevoluteJoint* jointU;
