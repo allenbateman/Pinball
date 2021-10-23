@@ -41,4 +41,10 @@ public:
 	uint bonus_fx;
 	p2Point<int> ray;
 	bool ray_on;
+
+	int score;
+	int lives;
+
+	bool win_condition;
+	bool game_stop;
 };

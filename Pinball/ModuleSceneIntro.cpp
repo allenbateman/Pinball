@@ -12,6 +12,7 @@ ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Modul
 	circle = box = rick = NULL;
 	ray_on = false;
 	sensed = false;
+	lives = 3; //Si quereis poner más vidas pues aqui teneis los datillos
 }
 
 ModuleSceneIntro::~ModuleSceneIntro()
@@ -218,9 +219,26 @@ update_status ModuleSceneIntro::Update()
 			App->renderer->DrawLine(ray.x + destination.x, ray.y + destination.y, ray.x + destination.x + normal.x * 25.0f, ray.y + destination.y + normal.y * 25.0f, 100, 255, 100);
 	}
 	
+	//Aquí está el game loop (lo de la win/lose condition)
 
+	if (score == 1000000) //si quereis cambiar la score para ganar adelante
+	{
+		win_condition = 1;
+		game_stop = 1;
+	}
+
+	if ((lives == 0) || (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN)) // Esto será la losing condition, pero de momento no puedo hacerla bien
+	{
+		game_stop = 1;
+	}
+
+	if (game_stop == 1)
+	{
+		//Las Paletas tienen que dejar de funcionar
+		//enseñar score		
+	}
+		
 	
-
 	return UPDATE_CONTINUE;
 }
 
