@@ -46,69 +46,66 @@ bool ModulePhysics::Start()
 
 	b2Body* big_ball = world->CreateBody(&body);
 
-	int background2_vertex[124] = {
-	397, 355,
-	396, 356,
-	395, -186,
-	392, -202,
-	387, -211,
-	385, -218,
-	380, -227,
-	374, -236,
-	369, -243,
-	362, -251,
-	354, -257,
-	344, -265,
-	335, -268,
-	325, -274,
-	315, -277,
-	299, -279,
-	91, -280,
-	80, -277,
-	68, -274,
-	54, -269,
-	46, -263,
-	38, -257,
-	34, -251,
-	27, -242,
-	25, -237,
-	25, -249,
-	22, -256,
-	16, -259,
-	11, -257,
-	7, -252,
-	8, -33,
-	22, -3,
-	34, -8,
-	23, -34,
-	25, -40,
-	50, 18,
-	40, 21,
-	33, 28,
-	29, 20,
-	27, 13,
-	26, 7,
-	8, 8,
-	10, 27,
-	10, 33,
-	10, 44,
-	11, 55,
-	13, 66,
-	15, 73,
-	18, 81,
-	21, 90,
-	24, 100,
-	29, 110,
-	32, 116,
-	38, 125,
-	41, 130,
-	42, 137,
-	10, 172,
-	10, 353,
-	23, 353,
-	25, 316,
-	147, 358,
-	1, 358
+	int background2_vertex[118] = {
+	396, 719,
+	396, 177,
+	393, 160,
+	386, 141,
+	380, 130,
+	373, 122,
+	365, 112,
+	355, 104,
+	344, 96,
+	331, 90,
+	320, 85,
+	310, 82,
+	295, 80,
+	92, 80,
+	82, 82,
+	71, 85,
+	62, 88,
+	56, 91,
+	45, 98,
+	40, 104,
+	34, 108,
+	30, 114,
+	25, 124,
+	24, 109,
+	21, 102,
+	16, 101,
+	9, 103,
+	7, 108,
+	8, 330,
+	24, 358,
+	35, 354,
+	25, 326,
+	25, 320,
+	50, 376,
+	50, 379,
+	43, 380,
+	38, 382,
+	36, 388,
+	32, 384,
+	29, 379,
+	25, 368,
+	8, 368,
+	10, 398,
+	11, 409,
+	13, 422,
+	16, 433,
+	19, 449,
+	24, 458,
+	29, 468,
+	34, 477,
+	40, 488,
+	42, 492,
+	41, 500,
+	9, 530,
+	10, 714,
+	26, 714,
+	25, 676,
+	148, 719,
+	0, 719
 	};
 
 	int background2LD1_vertex[30] = {
@@ -128,18 +125,18 @@ bool ModulePhysics::Start()
 	29, 564,
 	25, 563
 	};
-/*
-	int background2LD2_vertex[12] =
+
+	int background2LD2_vertex[10] =
 	{
 		44, 567,
 	44, 626,
 	46, 627,
 	48, 626,
 	48, 568,
-	44, 567
+	
 	};
 
-	int background2LD3_vertex[22] =
+	int background2LD3_vertex[20] =
 	{
 		63, 573,
 	63, 629,
@@ -151,7 +148,7 @@ bool ModulePhysics::Start()
 	107, 642,
 	71, 572,
 	68, 571,
-	63, 573
+	
 	};
 
 	int background2RD1_vertex[20] =
@@ -190,16 +187,254 @@ bool ModulePhysics::Start()
 	306, 573,
 	310, 570,
 	314, 571
-	};*/
+	};
+
+	int background2LU_vertex[72] =
+	{
+		60, 309,
+	28, 248,
+	25, 240,
+	24, 232,
+	24, 183,
+	25, 175,
+	26, 167,
+	29, 158,
+	32, 151,
+	37, 142,
+	41, 135,
+	48, 129,
+	62, 140,
+	63, 179,
+	95, 199,
+	79, 232,
+	95, 257,
+	100, 262,
+	110, 267,
+	117, 273,
+	117, 287,
+	114, 290,
+	107, 286,
+	103, 279,
+	59, 208,
+	59, 158,
+	40, 147,
+	38, 152,
+	35, 159,
+	33, 166,
+	30, 175,
+	29, 182,
+	29, 239,
+	36, 255,
+	64, 306,
+	63, 309
+	};
+
+	int background2LU1_vertex[12] =
+	{
+		131, 276,
+	131, 285,
+	134, 287,
+	136, 285,
+	136, 276,
+	134, 274
+	};
+
+	int background2LU2_vertex[12] =
+	{
+		150, 274,
+	150, 285,
+	152, 287,
+	154, 285,
+	154, 275,
+	152, 272
+	};
+
+	int background2RU_vertex[66] =
+	{
+		211, 327,
+	215, 288,
+	213, 284,
+	210, 281,
+	206, 281,
+	201, 283,
+	198, 287,
+	186, 299,
+	134, 314,
+	130, 312,
+	133, 309,
+	161, 300,
+	164, 298,
+	167, 296,
+	174, 265,
+	173, 259,
+	165, 231,
+	164, 228,
+	166, 227,
+	217, 258,
+	217, 275,
+	221, 278,
+	227, 278,
+	232, 275,
+	232, 250,
+	215, 233,
+	215, 170,
+	198, 154,
+	198, 137,
+	200, 136,
+	263, 198,
+	263, 274,
+	213, 327
+	};
+
+	int background2RU1_vertex[80] =
+	{
+		263, 153,
+	335, 227,
+	341, 236,
+	344, 242,
+	348, 251,
+	351, 260,
+	354, 268,
+	356, 283,
+	356, 304,
+	355, 312,
+	351, 320,
+	346, 326,
+	327, 332,
+	323, 330,
+	344, 297,
+	346, 290,
+	345, 285,
+	343, 278,
+	339, 270,
+	334, 264,
+	328, 264,
+	271, 326,
+	268, 326,
+	253, 312,
+	254, 309,
+	289, 272,
+	290, 269,
+	278, 258,
+	278, 218,
+	280, 216,
+	309, 246,
+	309, 257,
+	275, 294,
+	275, 301,
+	279, 304,
+	284, 304,
+	324, 261,
+	324, 232,
+	261, 169,
+	261, 153
+	};
+
+	int background2RU2_vertex[106] =
+	{
+		300, 156,
+	319, 137,
+	325, 143,
+	334, 152,
+	340, 161,
+	349, 178,
+	354, 195,
+	355, 205,
+	372, 205,
+	372, 186,
+	370, 174,
+	367, 164,
+	363, 155,
+	357, 144,
+	349, 136,
+	334, 121,
+	337, 117,
+	344, 123,
+	351, 131,
+	361, 142,
+	367, 153,
+	373, 164,
+	378, 181,
+	380, 192,
+	380, 458,
+	377, 462,
+	370, 465,
+	363, 469,
+	357, 472,
+	352, 475,
+	348, 474,
+	348, 446,
+	351, 443,
+	354, 438,
+	357, 433,
+	361, 427,
+	364, 420,
+	367, 409,
+	368, 402,
+	370, 391,
+	372, 381,
+	372, 273,
+	370, 261,
+	366, 246,
+	359, 232,
+	355, 224,
+	349, 215,
+	345, 208,
+	338, 201,
+	331, 193,
+	325, 186,
+	316, 176,
+	299, 158
+	};
+
+	int background2M_vertex[14] =
+	{
+		307, 373,
+	328, 365,
+	330, 367,
+	330, 428,
+	327, 430,
+	306, 378,
+	304, 374
+	};
+
+	int background2S_vertex[32] =
+	{
+		380, 479,
+	379, 719,
+	230, 719,
+	351, 676,
+	353, 677,
+	353, 714,
+	368, 714,
+	368, 529,
+	349, 510,
+	349, 505,
+	353, 499,
+	357, 493,
+	361, 488,
+	366, 485,
+	373, 483,
+	377, 481
+	};
+
 
 	//Background colliders
-	background2B = App->physics->CreateChain(0, 360, background2_vertex, 124, b2_staticBody);
-	background2B2 = App->physics->CreateChain(0, 360, background2LD1_vertex, 30, b2_staticBody);
-	/*background2B3 = App->physics->CreateChain(0, 360, background2LD2_vertex, 12, b2_staticBody);
-	background2B4 = App->physics->CreateChain(0, 360, background2LD3_vertex, 22, b2_staticBody);
-	background2B5 = App->physics->CreateChain(0, 360, background2RD1_vertex, 20, b2_staticBody);
-	background2B6 = App->physics->CreateChain(0, 360, background2RD2_vertex, 12, b2_staticBody);
-	background2B7 = App->physics->CreateChain(0, 360, background2RD3_vertex, 20, b2_staticBody);*/
+	background2B = App->physics->CreateChain(0, 0, background2_vertex, 124, b2_staticBody);
+	background2B2 = App->physics->CreateChain(0, 0, background2LD1_vertex, 30, b2_staticBody);
+	background2B3 = App->physics->CreateChain(0, 0, background2LD2_vertex, 10, b2_staticBody);
+	background2B4 = App->physics->CreateChain(0, 0, background2LD3_vertex, 20, b2_staticBody);
+	background2B5 = App->physics->CreateChain(0, 0, background2RD1_vertex, 20, b2_staticBody);
+	background2B6 = App->physics->CreateChain(0, 0, background2RD2_vertex, 12, b2_staticBody);
+	background2B7 = App->physics->CreateChain(0, 0, background2RD3_vertex, 20, b2_staticBody);
+	background2B8 = App->physics->CreateChain(0, 0, background2LU_vertex, 72, b2_staticBody);
+	background2B9 = App->physics->CreateChain(0, 0, background2LU1_vertex, 12, b2_staticBody);
+	background2B10 = App->physics->CreateChain(0, 0, background2LU2_vertex, 12, b2_staticBody);
+	background2B11 = App->physics->CreateChain(0, 0, background2RU_vertex, 66, b2_staticBody);
+	background2B12 = App->physics->CreateChain(0, 0, background2RU1_vertex, 80, b2_staticBody);
+	background2B13 = App->physics->CreateChain(0, 0, background2RU2_vertex, 106, b2_staticBody);
+	background2B14 = App->physics->CreateChain(0, 0, background2M_vertex, 14, b2_staticBody);
+	background2B15 = App->physics->CreateChain(0, 0, background2S_vertex, 32, b2_staticBody);
 
 	
 	//b2CircleShape shape;

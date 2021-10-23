@@ -57,6 +57,14 @@ public:
 	PhysBody* background2B5;
 	PhysBody* background2B6;
 	PhysBody* background2B7;
+	PhysBody* background2B8;
+	PhysBody* background2B9;
+	PhysBody* background2B10;
+	PhysBody* background2B11;
+	PhysBody* background2B12;
+	PhysBody* background2B13;
+	PhysBody* background2B14;
+	PhysBody* background2B15;
 
 	// b2ContactListener ---
 	void BeginContact(b2Contact* contact);
