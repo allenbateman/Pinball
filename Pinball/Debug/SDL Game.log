@@ -1,9 +1,9 @@
 ﻿  ModulePhysics.cpp
-C:\GitHub\Pinball\Pinball\ModulePhysics.cpp(40,8): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\GitHub\Pinball\Pinball\ModulePhysics.cpp(277,23): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\GitHub\Pinball\Pinball\ModulePhysics.cpp(278,25): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\GitHub\Pinball\Pinball\ModulePhysics.cpp(321,20): warning C4018: '<': signed/unsigned mismatch
-C:\GitHub\Pinball\Pinball\ModulePhysics.cpp(538,13): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\GitHub\Pinball\Pinball\ModulePhysics.cpp(539,13): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\GitHub\Pinball\Pinball\ModulePhysics.cpp(545,27): warning C4244: 'return': conversion from 'float32' to 'int', possible loss of data
-  SDL Game.vcxproj -> C:\GitHub\Pinball\Pinball\Debug\2D Physics - class 4.exe
+C:\Users\allen\Documents\GitHub\Pinball\Pinball\ModulePhysics.cpp(40,8): warning C4244: 'inicializando': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\allen\Documents\GitHub\Pinball\Pinball\ModulePhysics.cpp(277,23): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\allen\Documents\GitHub\Pinball\Pinball\ModulePhysics.cpp(278,25): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\allen\Documents\GitHub\Pinball\Pinball\ModulePhysics.cpp(321,20): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\allen\Documents\GitHub\Pinball\Pinball\ModulePhysics.cpp(538,13): warning C4244: 'inicializando': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\allen\Documents\GitHub\Pinball\Pinball\ModulePhysics.cpp(539,13): warning C4244: 'inicializando': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\allen\Documents\GitHub\Pinball\Pinball\ModulePhysics.cpp(545,27): warning C4244: 'return': conversión de 'float32' a 'int'; posible pérdida de datos
+  SDL Game.vcxproj -> C:\Users\allen\Documents\GitHub\Pinball\Pinball\Debug\2D Physics - class 4.exe

@@ -111,7 +111,7 @@ bool ModulePhysics::Start()
 	1, 358
 	};
 
-	/*int background2LD1_vertex[30] = {
+	int background2LD1_vertex[30] = {
 	25, 562,
 	25, 650,
 	32, 657,
@@ -126,9 +126,9 @@ bool ModulePhysics::Start()
 	30, 632,
 	28, 627,
 	29, 564,
-	25, 562
+	25, 563
 	};
-
+/*
 	int background2LD2_vertex[12] =
 	{
 		44, 567,
@@ -193,13 +193,13 @@ bool ModulePhysics::Start()
 	};*/
 
 	//Background colliders
-	background2B = App->physics->CreateChain(0, 360, background2_vertex, 124, b2_kinematicBody);
-	/*background2B2 = App->physics->CreateChain(0, 360, background2LD1_vertex, 30, b2_kinematicBody);
-	background2B3 = App->physics->CreateChain(0, 360, background2LD2_vertex, 12, b2_kinematicBody);
-	background2B4 = App->physics->CreateChain(0, 360, background2LD3_vertex, 22, b2_kinematicBody);
-	background2B5 = App->physics->CreateChain(0, 360, background2RD1_vertex, 20, b2_kinematicBody);
-	background2B6 = App->physics->CreateChain(0, 360, background2RD2_vertex, 12, b2_kinematicBody);
-	background2B7 = App->physics->CreateChain(0, 360, background2RD3_vertex, 20, b2_kinematicBody);*/
+	background2B = App->physics->CreateChain(0, 360, background2_vertex, 124, b2_staticBody);
+	background2B2 = App->physics->CreateChain(0, 360, background2LD1_vertex, 30, b2_staticBody);
+	/*background2B3 = App->physics->CreateChain(0, 360, background2LD2_vertex, 12, b2_staticBody);
+	background2B4 = App->physics->CreateChain(0, 360, background2LD3_vertex, 22, b2_staticBody);
+	background2B5 = App->physics->CreateChain(0, 360, background2RD1_vertex, 20, b2_staticBody);
+	background2B6 = App->physics->CreateChain(0, 360, background2RD2_vertex, 12, b2_staticBody);
+	background2B7 = App->physics->CreateChain(0, 360, background2RD3_vertex, 20, b2_staticBody);*/
 
 	
 	//b2CircleShape shape;
