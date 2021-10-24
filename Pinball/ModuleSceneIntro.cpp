@@ -31,94 +31,31 @@ bool ModuleSceneIntro::Start()
 	background3 = App->textures->Load("pinball/PinballAssets/PinballSprites/layer2.png");
 	background4 = App->textures->Load("pinball/PinballAssets/PinballSprites/layer3.png");
 	ball = App->textures->Load("pinball/PinballAssets/PinballSprites/pinball.png");
+	wheel = App->textures->Load("pinball/PinballAssets/PinballSprites/wheel0.png");
 
-	/*int background2_vertex[124] = {
-	397, 355,
-	396, 356,
-	395, -186,
-	392, -202,
-	387, -211,
-	385, -218,
-	380, -227,
-	374, -236,
-	369, -243,
-	362, -251,
-	354, -257,
-	344, -265,
-	335, -268,
-	325, -274,
-	315, -277,
-	299, -279,
-	91, -280,
-	80, -277,
-	68, -274,
-	54, -269,
-	46, -263,
-	38, -257,
-	34, -251,
-	27, -242,
-	25, -237,
-	25, -249,
-	22, -256,
-	16, -259,
-	11, -257,
-	7, -252,
-	8, -33,
-	22, -3,
-	34, -8,
-	23, -34,
-	25, -40,
-	50, 18,
-	40, 21,
-	33, 28,
-	29, 20,
-	27, 13,
-	26, 7,
-	8, 8,
-	10, 27,
-	10, 33,
-	10, 44,
-	11, 55,
-	13, 66,
-	15, 73,
-	18, 81,
-	21, 90,
-	24, 100,
-	29, 110,
-	32, 116,
-	38, 125,
-	41, 130,
-	42, 137,
-	10, 172,
-	10, 353,
-	23, 353,
-	25, 316,
-	147, 358,
-	1, 358
+	int wheel0_vertex[32] = {
+	2, 0,
+	15, 22,
+	21, 22,
+	24, 27,
+	51, 27,
+	51, 30,
+	25, 30,
+	22, 34,
+	16, 35,
+	2, 57,
+	0, 56,
+	13, 34,
+	11, 29,
+	13, 24,
+	0, 1,
+	1, 0
 	};
+	wheelPos = { 147,123 };
+	wheelBody = App->physics->CreateChain(wheelPos.x, wheelPos.y, wheel0_vertex, 32, b2_dynamicBody);
+	wheelAnchor = App->physics->CreateCircle(wheelPos.x, wheelPos.y, 3, b2_staticBody);
+	wheelJoint = App->physics->RevoluteJoint(wheelAnchor, { -1,-1 }, wheelBody, { 17.5,28 });
 
-	int background2LD1_vertex[30] = {
-	25, 562,
-	25, 650,
-	32, 657,
-	37, 657,
-	42, 658,
-	113, 687,
-	112, 683,
-	113, 676,
-	116, 672,
-	121, 670,
-	34, 637,
-	30, 632,
-	28, 627,
-	29, 564,
-	25, 562
-	};
-	//Background colliders
-	background2B = App->physics->CreateChain(0, 360, background2_vertex, 124, b2_kinematicBody);
-	background2B2 = App->physics->CreateChain(0, 360, background2LD1_vertex, 30, b2_kinematicBody);
-	*/
-	//sensor = App->physics->CreateRectangleSensor(SCREEN_WIDTH / 2, SCREEN_HEIGHT, SCREEN_WIDTH, 50);
 
 	return ret;
 }

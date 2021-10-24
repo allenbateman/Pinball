@@ -3,6 +3,8 @@
 #include "p2List.h"
 #include "p2Point.h"
 #include "Globals.h"
+#include "ModulePhysics.h"
+
 
 class PhysBody;
 struct SDL_Texture;
@@ -27,6 +29,12 @@ public:
 	PhysBody* sensor;
 	PhysBody* background2B;
 	PhysBody* background2B2;
+
+	PhysBody* wheelBody;
+	PhysBody* wheelAnchor;
+	b2Vec2 wheelPos = { 0,0 };
+	b2RevoluteJoint* wheelJoint;
+	
 	bool sensed;
 
 	SDL_Texture* circle;
@@ -37,6 +45,8 @@ public:
 	SDL_Texture* background3;
 	SDL_Texture* background4;
 	SDL_Texture* background2LD1;
+
+	SDL_Texture* wheel;
 	SDL_Texture* ball;
 	uint bonus_fx;
 	p2Point<int> ray;

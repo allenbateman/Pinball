@@ -621,13 +621,10 @@ b2RevoluteJoint* ModulePhysics::RevoluteJoint(PhysBody* bodyA,b2Vec2 localCenter
 
 	jointdef.collideConnected = collide;
 
-	jointdef.referenceAngle = referenceAngle;
 	jointdef.enableLimit = enableLimit;
+	jointdef.referenceAngle = referenceAngle;
 	jointdef.lowerAngle = lowerAngle* DEGTORAD;
 	jointdef.upperAngle = upperAngle * DEGTORAD;
-
-	//LOG("JOINT-> anchor A.x:%i A.y:%i", METERS_TO_PIXELS(jointdef.localAnchorA.x), METERS_TO_PIXELS(jointdef.localAnchorA.y));
-	//LOG("JOINT-> anchor B.x:%i B.y:%i", METERS_TO_PIXELS(jointdef.localAnchorB.x), METERS_TO_PIXELS(jointdef.localAnchorB.y));
 
 	b2RevoluteJoint* joint = (b2RevoluteJoint*)world->CreateJoint(&jointdef);
 	return joint;
@@ -638,8 +635,10 @@ b2PrismaticJoint* ModulePhysics::PrismaticJoint(PhysBody* bodyA, b2Vec2 localCen
 
 	jointDef.bodyA = bodyA->body;
 	jointDef.localAnchorA.Set(PIXEL_TO_METERS(localCenterA.x), PIXEL_TO_METERS(localCenterA.y));
+
 	jointDef.bodyB = bodyB->body;
 	jointDef.localAnchorB.Set(PIXEL_TO_METERS(localCenterB.x), PIXEL_TO_METERS(localCenterB.y));
+
 	jointDef.localAxisA.Set(0, -1);
 	jointDef.enableLimit = true;
 	jointDef.lowerTranslation = PIXEL_TO_METERS(localCenterB.y);
@@ -656,8 +655,10 @@ b2DistanceJoint* ModulePhysics::DistanceJoint(PhysBody* bodyA, b2Vec2 localCente
 
 	jointDef.bodyA = bodyA->body;
 	jointDef.localAnchorA.Set(PIXEL_TO_METERS(localCenterA.x), PIXEL_TO_METERS(localCenterA.y));
+
 	jointDef.bodyB = bodyB->body;
 	jointDef.localAnchorB.Set(PIXEL_TO_METERS(localCenterB.x), PIXEL_TO_METERS(localCenterB.y));
+
 	jointDef.length = distance;
 	jointDef.frequencyHz = frequency;
 	jointDef.dampingRatio = damping;
