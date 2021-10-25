@@ -26,12 +26,20 @@ public:
 	p2List<PhysBody*> ricks;
 	p2List<PhysBody*> chains;
 
+	p2List<PhysBody*> bumpers;
+
+
 	PhysBody* sensor;
 	PhysBody* background2B;
 	PhysBody* background2B2;
 
 	PhysBody* wheelBody;
 	PhysBody* wheelAnchor;
+
+	b2Vec2 bumper1Pos = { 0,0 };
+	b2Vec2 bumper2Pos = { 0,0 };
+	b2Vec2 bumper3Pos = { 0,0 };
+
 	b2Vec2 wheelPos = { 0,0 };
 	b2RevoluteJoint* wheelJoint;
 	
@@ -47,6 +55,8 @@ public:
 	SDL_Texture* background2LD1;
 
 	SDL_Texture* wheel;
+	SDL_Texture* bumper;
+	SDL_Texture* bumperOn;
 	SDL_Texture* ball;
 	uint bonus_fx;
 	p2Point<int> ray;

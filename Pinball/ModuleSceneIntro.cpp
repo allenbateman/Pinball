@@ -32,6 +32,8 @@ bool ModuleSceneIntro::Start()
 	background4 = App->textures->Load("pinball/PinballAssets/PinballSprites/layer3.png");
 	ball = App->textures->Load("pinball/PinballAssets/PinballSprites/pinball.png");
 	wheel = App->textures->Load("pinball/PinballAssets/PinballSprites/wheel0.png");
+	bumper = App->textures->Load("pinball/PinballAssets/PinballSprites/bumperoff.png");
+	bumperOn = App->textures->Load("pinball/PinballAssets/PinballSprites/bumperon.png");
 
 	int wheel0_vertex[32] = {
 	2, 0,
@@ -52,10 +54,20 @@ bool ModuleSceneIntro::Start()
 	1, 0
 	};
 	wheelPos = { 147,123 };
-	wheelBody = App->physics->CreateChain(wheelPos.x, wheelPos.y, wheel0_vertex, 32, b2_dynamicBody,0);
+	wheelBody = App->physics->CreateChain(wheelPos.x, wheelPos.y, wheel0_vertex, 32, b2_dynamicBody);
 	wheelAnchor = App->physics->CreateCircle(wheelPos.x, wheelPos.y, 3, b2_kinematicBody);
 	wheelJoint = App->physics->RevoluteJoint(wheelAnchor, { -1,-1 }, wheelBody, { 17.5,28 });
-	
+
+	bumper1Pos = { 96,164 };
+	bumper2Pos = { 113,225 };
+	bumper3Pos = { 180,180 };
+
+	bumpers.add(App->physics->CreateCircle(bumper1Pos.x, bumper1Pos.y, 13, b2_kinematicBody));
+	bumpers.getLast()->data->listener = this;
+	bumpers.add(App->physics->CreateCircle(bumper2Pos.x, bumper2Pos.y, 13, b2_kinematicBody));
+	bumpers.getLast()->data->listener = this;
+	bumpers.add(App->physics->CreateCircle(bumper3Pos.x, bumper3Pos.y, 13, b2_kinematicBody));
+	bumpers.getLast()->data->listener = this;
 
 	return ret;
 }
@@ -83,13 +95,19 @@ update_status ModuleSceneIntro::Update()
 	App->renderer->Blit(background1, backgroundPosition.x, backgroundPosition.y);
 	App->renderer->Blit(background2, backgroundPosition.x, backgroundPosition.y);
 	App->renderer->Blit(background3, backgroundPosition.x, backgroundPosition.y);
-	App->renderer->Blit(background4, backgroundPosition.x, backgroundPosition.y);
+	//App->renderer->Blit(background4, backgroundPosition.x, backgroundPosition.y);
 	
 	
-	if(App->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
+	if(App->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN)
 	{
-	//	circles.add(App->physics->CreateCircle(App->input->GetMouseX(), App->input->GetMouseY(),6, b2_dynamicBody));
+		// create ball in pring pos
 		circles.add(App->physics->CreateCircle(387, 655,6, b2_dynamicBody));
+		circles.getLast()->data->listener = this;
+	}
+	if (App->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
+	{
+		// create ball in mouse pos
+		circles.add(App->physics->CreateCircle(App->input->GetMouseX(), App->input->GetMouseY(),6, b2_dynamicBody));
 		circles.getLast()->data->listener = this;
 	}
 
@@ -102,11 +120,13 @@ update_status ModuleSceneIntro::Update()
 
 	fVector normal(0.0f, 0.0f);
 
-	//wheelBody->body->SetAngularVelocity(5);
-	App->renderer->Blit(wheel, wheelPos.x-17.5, wheelPos.y-28, SDL_FLIP_NONE, NULL, 1.0f, wheelJoint->GetJointAngle() * RADTODEG, 17.5,28 );
-
-
 	// All draw functions ------------------------------------------------------
+
+
+	//wheelBody->body->SetAngularVelocity(-5);
+	App->renderer->Blit(wheel, wheelPos.x - 17.5, wheelPos.y - 28, SDL_FLIP_NONE, NULL, 1.0f, 1, -wheelJoint->GetJointAngle() * RADTODEG, 17.5, 28);
+
+
 	p2List_item<PhysBody*>* c = circles.getFirst();
 
 	while(c != NULL)
@@ -133,13 +153,13 @@ update_status ModuleSceneIntro::Update()
 		c = c->next;
 	}
 
-	c = ricks.getFirst();
+	c = bumpers.getFirst();
 
 	while(c != NULL)
 	{
 		int x, y;
 		c->data->GetPosition(x, y);
-		App->renderer->Blit(rick, x, y, SDL_FLIP_NONE, NULL, 1.0f, c->data->GetRotation());
+		App->renderer->Blit(bumper, x, y, SDL_FLIP_NONE, NULL, 1.0f, 1.0f,c->data->GetRotation());
 		c = c->next;
 	}
 
@@ -156,6 +176,8 @@ update_status ModuleSceneIntro::Update()
 			App->renderer->DrawLine(ray.x + destination.x, ray.y + destination.y, ray.x + destination.x + normal.x * 25.0f, ray.y + destination.y + normal.y * 25.0f, 100, 255, 100);
 	}
 	
+
+
 	//Aquí está el game loop (lo de la win/lose condition)
 
 	if (score == 1000000) //si quereis cambiar la score para ganar adelante
