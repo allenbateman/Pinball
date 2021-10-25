@@ -563,12 +563,12 @@ PhysBody* ModulePhysics::CreateRectangleSensor(int x, int y, int width, int heig
 	return pbody;
 }
 
-PhysBody* ModulePhysics::CreateChain(int x, int y, int* points, int size, b2BodyType bodyType)
+PhysBody* ModulePhysics::CreateChain(int x, int y, int* points, int size, b2BodyType bodyType,float density)
 {
 	b2BodyDef body;
 	body.type = bodyType;
 	body.position.Set(PIXEL_TO_METERS(x), PIXEL_TO_METERS(y));
-
+	
 	b2Body* b = world->CreateBody(&body);
 
 	b2ChainShape shape;
@@ -584,7 +584,7 @@ PhysBody* ModulePhysics::CreateChain(int x, int y, int* points, int size, b2Body
 
 	b2FixtureDef fixture;
 	fixture.shape = &shape;
-
+	fixture.density = density;
 	b->CreateFixture(&fixture);
 
 	//delete p;

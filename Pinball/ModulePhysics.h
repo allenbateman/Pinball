@@ -45,7 +45,7 @@ public:
 	PhysBody* CreateCircle(int x, int y, int radius,b2BodyType type);
 	PhysBody* CreateRectangle(int x, int y, int width, int height, b2BodyType type);
 	PhysBody* CreateRectangleSensor(int x, int y, int width, int height);
-	PhysBody* CreateChain(int x, int y, int* points, int size, b2BodyType bodyType);
+	PhysBody* CreateChain(int x, int y, int* points, int size, b2BodyType bodyType, float density =1);
 	b2Joint* JointBodies(PhysBody* bodyA, PhysBody* bodyB, b2JointType type);
 	b2RevoluteJoint* RevoluteJoint(PhysBody* bodyA, b2Vec2 localCenterA, PhysBody* bodyB, b2Vec2 localCenterB,bool collide = false, bool enableLimit = false, float referenceAngle = 0, float lowerAngle =-30000, float upperAngle = 30000);
 	b2PrismaticJoint* PrismaticJoint(PhysBody* bodyA, b2Vec2 localCenterA, PhysBody* bodyB, b2Vec2 localCenterB, float distance);

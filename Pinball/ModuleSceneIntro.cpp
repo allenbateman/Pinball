@@ -52,10 +52,10 @@ bool ModuleSceneIntro::Start()
 	1, 0
 	};
 	wheelPos = { 147,123 };
-	wheelBody = App->physics->CreateChain(wheelPos.x, wheelPos.y, wheel0_vertex, 32, b2_dynamicBody);
-	wheelAnchor = App->physics->CreateCircle(wheelPos.x, wheelPos.y, 3, b2_staticBody);
+	wheelBody = App->physics->CreateChain(wheelPos.x, wheelPos.y, wheel0_vertex, 32, b2_dynamicBody,0);
+	wheelAnchor = App->physics->CreateCircle(wheelPos.x, wheelPos.y, 3, b2_kinematicBody);
 	wheelJoint = App->physics->RevoluteJoint(wheelAnchor, { -1,-1 }, wheelBody, { 17.5,28 });
-
+	
 
 	return ret;
 }
@@ -79,21 +79,17 @@ update_status ModuleSceneIntro::Update()
 	int x = 0, y = 0;
 	backgroundPosition.Set(PIXEL_TO_METERS(x), PIXEL_TO_METERS(y));
 
+	//background drawing
 	App->renderer->Blit(background1, backgroundPosition.x, backgroundPosition.y);
 	App->renderer->Blit(background2, backgroundPosition.x, backgroundPosition.y);
 	App->renderer->Blit(background3, backgroundPosition.x, backgroundPosition.y);
 	App->renderer->Blit(background4, backgroundPosition.x, backgroundPosition.y);
 	
-	//if(App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
-	//{
-	//	ray_on = !ray_on;
-	//	ray.x = App->input->GetMouseX();
-	//	ray.y = App->input->GetMouseY();
-	//}
-
+	
 	if(App->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
 	{
-		circles.add(App->physics->CreateCircle(App->input->GetMouseX(), App->input->GetMouseY(),6, b2_dynamicBody));
+	//	circles.add(App->physics->CreateCircle(App->input->GetMouseX(), App->input->GetMouseY(),6, b2_dynamicBody));
+		circles.add(App->physics->CreateCircle(387, 655,6, b2_dynamicBody));
 		circles.getLast()->data->listener = this;
 	}
 
@@ -105,6 +101,10 @@ update_status ModuleSceneIntro::Update()
 	int ray_hit = ray.DistanceTo(mouse);
 
 	fVector normal(0.0f, 0.0f);
+
+	//wheelBody->body->SetAngularVelocity(5);
+	App->renderer->Blit(wheel, wheelPos.x-17.5, wheelPos.y-28, SDL_FLIP_NONE, NULL, 1.0f, wheelJoint->GetJointAngle() * RADTODEG, 17.5,28 );
+
 
 	// All draw functions ------------------------------------------------------
 	p2List_item<PhysBody*>* c = circles.getFirst();

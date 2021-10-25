@@ -36,10 +36,10 @@ bool ModulePlayer::Start()
 	flipperLAnchorPos = { 119, 680 };
 	flipperUAnchorPos = { 45,  388 };
 
-	plungerSize = { 13,10 };
-	plungerForce = { 0,100 };
+	plungerSize = { 13,5 };
+	plungerForce = { 0,10 };
 
-	flipperVelocity = 30;
+	flipperVelocity = 20;
 
 	int flipperL_vertex[18] = {
 		3, 17,
@@ -107,7 +107,7 @@ bool ModulePlayer::Start()
 	plungerBody = App->physics->CreateRectangle(plungerlocalCenterBody.x, plungerlocalCenterBody.y, plungerSize.x, plungerSize.y, b2_dynamicBody);
 	plungerBody->body->GetFixtureList()->SetFilterData(b);
 	plungerAnchor = App->physics->CreateRectangle(plungerlocalCenterAnchor.x, plungerlocalCenterAnchor.y, plungerSize.x, plungerSize.y, b2_staticBody);
-	plungerJoint = App->physics->DistanceJoint(plungerAnchor, plungerlocalCenterAnchor, plungerBody, plungerlocalCenterBody,true, 2.1 ,8.5f,0);
+	plungerJoint = App->physics->DistanceJoint(plungerAnchor, plungerlocalCenterAnchor, plungerBody, plungerlocalCenterBody,true, 2 ,8.5f,0);
 	plungerBody->body->SetFixedRotation(true);
 
 	return true;
@@ -133,10 +133,23 @@ update_status ModulePlayer::PreUpdate()
 update_status ModulePlayer::Update()
 {
 
-	
+	int counter = 0;
 	if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
 	{
-		plungerBody->body->ApplyForce(plungerForce, { 0, 0}, true);
+		counter += 1;
+		if (counter % 2)
+		{
+			plungerForce.y += counter;
+			plungerBody->body->ApplyForce(plungerForce, { 0, 0 }, true);
+		}
+		if (counter > 100)
+		{
+			counter = 100;
+		}
+
+	}
+	else {
+		plungerForce.y = 10;
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT) {
@@ -187,7 +200,7 @@ update_status ModulePlayer::Update()
 
 	b2Vec2 localCenter;//local center of the flipper
 	localCenter.Set(9, 9);
-	App->renderer->Blit(plunger, plungerPos.x, plungerPos.y);
+	
 	
 	//left
 	App->renderer->Blit(flipperLeft, flipperLPos.x - localCenter.x, flipperLPos.y - localCenter.y, SDL_FLIP_NONE, 0, 1, 1, jointL->GetJointAngle() * RADTODEG, localCenter.x, localCenter.y);
@@ -197,7 +210,13 @@ update_status ModulePlayer::Update()
 	localCenter.Set(54, 9);
 	App->renderer->Blit(flipperRight, flipperRPos.x - localCenter.x, flipperRPos.y - localCenter.y, SDL_FLIP_NONE, 0, 1, 1, jointR->GetJointAngle() * RADTODEG, localCenter.x, localCenter.y);
 	
-	
+	SDL_Rect r;
+	r.x = 0;
+	r.y = 0;
+	r.w = 11;
+	r.h = 56;
+	r.h += plungerBody->body->GetPosition().y;
+	App->renderer->Blit(plunger, plungerPos.x, plungerPos.y,SDL_FLIP_NONE, &r);
 	App->renderer->DrawLine(METERS_TO_PIXELS(plungerBody->body->GetPosition().x), METERS_TO_PIXELS(plungerBody->body->GetPosition().y),
 		METERS_TO_PIXELS(plungerAnchor->body->GetPosition().x), METERS_TO_PIXELS(plungerAnchor->body->GetPosition().y),
 		0, 0, 255, 255);
