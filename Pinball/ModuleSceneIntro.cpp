@@ -101,13 +101,13 @@ update_status ModuleSceneIntro::Update()
 	if(App->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN)
 	{
 		// create ball in pring pos
-		circles.add(App->physics->CreateCircle(387, 655,6, b2_dynamicBody));
+		circles.add(App->physics->CreateCircle(387, 655,5, b2_dynamicBody));
 		circles.getLast()->data->listener = this;
 	}
 	if (App->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
 	{
 		// create ball in mouse pos
-		circles.add(App->physics->CreateCircle(App->input->GetMouseX(), App->input->GetMouseY(),6, b2_dynamicBody));
+		circles.add(App->physics->CreateCircle(App->input->GetMouseX(), App->input->GetMouseY(),5, b2_dynamicBody));
 		circles.getLast()->data->listener = this;
 	}
 
@@ -133,8 +133,17 @@ update_status ModuleSceneIntro::Update()
 	{
 		int x, y;
 		c->data->GetPosition(x, y);
-		App->renderer->Blit(ball, x, y, SDL_FLIP_NONE, NULL, 1.0f, c->data->GetRotation());
+		if (y > SCREEN_HEIGHT)
+		{
+			//lives --
+			//circles.del(c);
+		}
+		else {
+			App->renderer->Blit(ball, x, y, SDL_FLIP_NONE, NULL, 1.0f, c->data->GetRotation());
+			
+		}	
 		c = c->next;
+		
 	}
 
 	c = boxes.getFirst();
