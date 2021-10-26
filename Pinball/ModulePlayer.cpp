@@ -10,7 +10,6 @@
 
 ModulePlayer::ModulePlayer(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
-
 }
 
 ModulePlayer::~ModulePlayer()
@@ -132,8 +131,11 @@ update_status ModulePlayer::PreUpdate()
 // Update: draw background
 update_status ModulePlayer::Update()
 {
+	if (!App->scene_intro->game_stop) //Para que cuando se pare el juego las palas y toda la pesca no se mueva
+	{
+		
+		int counter = 0;
 
-	int counter = 0;
 	if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
 	{
 		counter += 1;
@@ -190,13 +192,17 @@ update_status ModulePlayer::Update()
 		else
 			flipperRBody->body->SetAngularVelocity(0);
 	}
+	
 	else {
 		//right
 		if (jointR->GetJointAngle() > 0)
 			flipperRBody->body->SetAngularVelocity(-flipperVelocity);
 		else
 			flipperRBody->body->SetAngularVelocity(0);
+	
 	} 
+	}
+	
 
 	b2Vec2 localCenter;//local center of the flipper
 	localCenter.Set(9, 9);

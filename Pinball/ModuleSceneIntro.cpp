@@ -200,10 +200,10 @@ update_status ModuleSceneIntro::Update()
 		game_stop = 1;
 	}
 
-	if (game_stop == 1)
+	if (game_stop)
 	{
-		//Las Paletas tienen que dejar de funcionar
-		//enseñar score		
+		if (App->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN) game_stop = 0;
+		//enseñar score
 	}
 		
 	

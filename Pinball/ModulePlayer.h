@@ -20,9 +20,6 @@ public:
 
 public:
 
-	int lives; 
-	int score;
-
 	SDL_Texture* plunger;
 	SDL_Texture* flipperRight;
 	SDL_Texture* flipperLeft;
@@ -56,8 +53,5 @@ public:
 	b2RevoluteJoint* jointL;
 	b2RevoluteJoint* jointU;
 	b2RevoluteJoint* jointR;
-
-
-	
 
 };
