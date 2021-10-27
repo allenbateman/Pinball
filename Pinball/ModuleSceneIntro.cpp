@@ -144,8 +144,10 @@ update_status ModuleSceneIntro::Update()
 		c->data->GetPosition(x, y);
 		if (y > SCREEN_HEIGHT)
 		{
-			//lives --
-			//circles.del(c);
+			LOG("%i/3 LIFES LOST", lives);
+			lives--;
+			circles.del(c);
+			break;
 		}
 		else {
 			App->renderer->Blit(ball, x, y, SDL_FLIP_NONE, NULL, 1.0f, c->data->GetRotation());
@@ -204,15 +206,21 @@ update_status ModuleSceneIntro::Update()
 		game_stop = 1;
 	}
 
-	if ((lives == 0) || (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN)) // Esto será la losing condition, pero de momento no puedo hacerla bien
+	if ((((lives == 0) || (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN)) && (!game_stop))) // Esto será la losing condition, pero de momento no puedo hacerla bien
 	{
 		game_stop = 1;
+		LOG("**********GAME HAS STOPPED**********")
 	}
 
 	if (game_stop)
 	{
-		if (App->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN) game_stop = 0;
+		if (App->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN)
+		{
+			game_stop = 0;
+			LOG("**********GAME HAS RESUMED**********")
+		}
 		//enseñar score
+		//Hace falta enseñar el menú de "Press ENTER to play again and ESC to exit"
 	}
 		
 	
