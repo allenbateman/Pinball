@@ -225,6 +225,19 @@ void ModuleSceneIntro::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 
 	App->audio->PlayFx(bonus_fx);
 
+	//LOG("LA BOLA ESTÁ COLISIONANDO");
+
+	//LA BOLA colisona con un BUMPER de esos redonditos y azules (uwú)
+	if ((METERS_TO_PIXELS((bodyB->body->GetPosition()) == bumper1Pos)) ||
+		(METERS_TO_PIXELS((bodyB->body->GetPosition()) == bumper2Pos)) ||
+		(METERS_TO_PIXELS((bodyB->body->GetPosition()) == bumper3Pos)))
+	{
+		LOG("COLISIONANDO CON %i, %i", METERS_TO_PIXELS(bodyB->body->GetPosition().x), METERS_TO_PIXELS(bodyB->body->GetPosition().y));
+
+		score += 1000;
+		LOG("SCORE = %i", score);
+	}
+
 	/*
 	if(bodyA)
 	{
