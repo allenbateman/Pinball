@@ -35,3 +35,5 @@ Pinball/.vs/2D Physics/v16/.suo
 *.db
 Pinball/Debug/2D Physi.746CC4C3.tlog/CL.read.1.tlog
 *.db
+*.opendb
+Pinball/.vs/2D Physics/v16/Browse.VC.db
