@@ -6,6 +6,7 @@
 #include "ModuleTextures.h"
 #include "ModuleAudio.h"
 #include "ModulePhysics.h"
+#include "ModuleFonts.h"
 
 ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
@@ -29,11 +30,15 @@ bool ModuleSceneIntro::Start()
 	background1 = App->textures->Load("pinball/PinballAssets/PinballSprites/layer0.png");
 	background2 = App->textures->Load("pinball/PinballAssets/PinballSprites/layer1.png");
 	background3 = App->textures->Load("pinball/PinballAssets/PinballSprites/layer2.png");
-	background4 = App->textures->Load("pinball/PinballAssets/PinballSprites/layer3.png");
+	background4 = App->textures->Load("pinball/PinballAssets/PinballSprites/PintballResilayer3.png");
 	ball = App->textures->Load("pinball/PinballAssets/PinballSprites/pinball.png");
 	wheel = App->textures->Load("pinball/PinballAssets/PinballSprites/wheel0.png");
 	bumper = App->textures->Load("pinball/PinballAssets/PinballSprites/bumperoff.png");
 	bumperOn = App->textures->Load("pinball/PinballAssets/PinballSprites/bumperon.png");
+
+	//Fonts
+	OrangeFont = App->fonts->Load("Assets/Sprites/OrangeNumsNew.png", "0123456789", 1);
+	YellowFont = App->fonts->Load("Assets/Sprites/YellowNumsNew.png", "0123456789", 1);
 
 	int wheel0_vertex[32] = {
 	2, 0,
@@ -69,6 +74,7 @@ bool ModuleSceneIntro::Start()
 	bumpers.add(App->physics->CreateCircle(bumper3Pos.x, bumper3Pos.y, 13, b2_kinematicBody));
 	bumpers.getLast()->data->listener = this;
 
+
 	return ret;
 }
 
@@ -80,6 +86,9 @@ bool ModuleSceneIntro::CleanUp()
 	App->textures->Unload(background2);
 	App->textures->Unload(background3);
 	App->textures->Unload(background4);
+
+	App->textures->Unload(YellowScoreText);
+	App->textures->Unload(OrangeScoreText);
 
 	return true;
 }
@@ -228,4 +237,28 @@ void ModuleSceneIntro::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 		bodyB->GetPosition(x, y);
 		App->renderer->DrawCircle(x, y, 50, 100, 100, 100);
 	}*/
+}
+
+void ModuleSceneIntro::AddScore(int multiply, int Addpoints)
+{
+	score += ScoreMultiply * Addpoints;
+}
+
+void ModuleSceneIntro::DrawScore()
+{
+
+	char char_score[10];
+	sprintf_s(char_score, "%.5d", score);
+	App->fonts->Blit(650, 500, OrangeFont, char_score);
+
+	char char_hscore[10];
+	sprintf_s(char_hscore, "%.5d", high_score);
+	App->fonts->Blit(650, 435, YellowFont, char_hscore);
+
+	char BallNumbers[10];
+	sprintf_s(BallNumbers, "%.1d", BallsNum);
+	App->fonts->Blit(650, 560, YellowFont, BallNumbers);
+
+
+
 }

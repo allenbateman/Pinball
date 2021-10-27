@@ -32,6 +32,9 @@ public:
 	PhysBody* sensor;
 	PhysBody* background2B;
 	PhysBody* background2B2;
+	PhysBody* Bumper1;
+	PhysBody* Bumper2;
+	PhysBody* Bumper3;
 
 	PhysBody* wheelBody;
 	PhysBody* wheelAnchor;
@@ -53,6 +56,11 @@ public:
 	SDL_Texture* background3;
 	SDL_Texture* background4;
 	SDL_Texture* background2LD1;
+	SDL_Texture* YellowScoreText = nullptr;
+	SDL_Texture* OrangeScoreText = nullptr;
+
+	int OrangeFont;
+	int YellowFont;
 
 	SDL_Texture* wheel;
 	SDL_Texture* bumper;
@@ -62,9 +70,20 @@ public:
 	p2Point<int> ray;
 	bool ray_on;
 
+	int BallsNum = 4;
+
 	int score;
 	int lives;
 
 	bool win_condition;
 	bool game_stop;
+
+	
+	int	high_score;
+	int	ScoreMultiply = 1;
+
+	void AddScore(int multiply, int Addscore);
+	void SetBoolstoFalse();
+
+	void DrawScore();
 };
