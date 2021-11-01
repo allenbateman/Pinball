@@ -69,10 +69,13 @@ bool ModuleSceneIntro::Start()
 
 	bumpers.add(App->physics->CreateCircle(bumper1Pos.x, bumper1Pos.y, 13, b2_kinematicBody));
 	bumpers.getLast()->data->listener = this;
+	bumpers.getLast()->data->type = ColliderType::BUMPER;
 	bumpers.add(App->physics->CreateCircle(bumper2Pos.x, bumper2Pos.y, 13, b2_kinematicBody));
 	bumpers.getLast()->data->listener = this;
+	bumpers.getLast()->data->type = ColliderType::BUMPER;
 	bumpers.add(App->physics->CreateCircle(bumper3Pos.x, bumper3Pos.y, 13, b2_kinematicBody));
 	bumpers.getLast()->data->listener = this;
+	bumpers.getLast()->data->type = ColliderType::BUMPER;
 
 
 	return ret;
@@ -112,12 +115,14 @@ update_status ModuleSceneIntro::Update()
 		// create ball in pring pos
 		circles.add(App->physics->CreateCircle(387, 655,5, b2_dynamicBody));
 		circles.getLast()->data->listener = this;
+		circles.getLast()->data->type = ColliderType::BALL;
 	}
 	if (App->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
 	{
 		// create ball in mouse pos
 		circles.add(App->physics->CreateCircle(App->input->GetMouseX(), App->input->GetMouseY(),5, b2_dynamicBody));
 		circles.getLast()->data->listener = this;
+		circles.getLast()->data->type = ColliderType::BALL;
 	}
 
 	// Prepare for raycast ------------------------------------------------------
@@ -235,15 +240,32 @@ void ModuleSceneIntro::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 
 	//LOG("LA BOLA ESTÁ COLISIONANDO");
 
+	if (bodyA->type == ColliderType::BUMPER)
+	{
+		LOG("COLLISION BUMPER A");
+	}
+	if (bodyB->type == ColliderType::BUMPER)
+	{
+		LOG("COLLISION BUMPER B");
+	}
+
+	if (bodyA->type == ColliderType::BALL)
+	{
+		LOG("COLLISION BALL A");
+	}
+	if (bodyB->type == ColliderType::BALL)
+	{
+		LOG("COLLISION BALL B");
+	}
 	//LA BOLA colisona con un BUMPER de esos redonditos y azules (uwú)
 	if ((METERS_TO_PIXELS((bodyB->body->GetPosition()) == bumper1Pos)) ||
 		(METERS_TO_PIXELS((bodyB->body->GetPosition()) == bumper2Pos)) ||
 		(METERS_TO_PIXELS((bodyB->body->GetPosition()) == bumper3Pos)))
 	{
-		LOG("COLISIONANDO CON %i, %i", METERS_TO_PIXELS(bodyB->body->GetPosition().x), METERS_TO_PIXELS(bodyB->body->GetPosition().y));
+	/*	LOG("COLISIONANDO CON %i, %i", METERS_TO_PIXELS(bodyB->body->GetPosition().x), METERS_TO_PIXELS(bodyB->body->GetPosition().y));
 
 		score += 1000;
-		LOG("SCORE = %i", score);
+		LOG("SCORE = %i", score);*/
 	}
 
 	/*

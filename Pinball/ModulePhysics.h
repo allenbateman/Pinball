@@ -12,6 +12,13 @@
 #define METERS_TO_PIXELS(m) ((int) floor(PIXELS_PER_METER * m))
 #define PIXEL_TO_METERS(p)  ((float) METER_PER_PIXEL * p)
 
+
+enum class ColliderType {
+	BUMPER,
+	WHEEL,
+	BALL
+};
+
 // Small class to return to other modules to track position and rotation of physics bodies
 class PhysBody
 {
@@ -29,6 +36,7 @@ public:
 	int id;
 	b2Body* body;
 	Module* listener;
+	ColliderType type;
 };
 
 // Module --------------------------------------

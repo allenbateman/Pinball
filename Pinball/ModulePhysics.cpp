@@ -457,14 +457,6 @@ bool ModulePhysics::Start()
 	background2B14 = App->physics->CreateChain(0, 0, background2M_vertex, 14, b2_staticBody);
 	background2B15 = App->physics->CreateChain(0, 0, background2S_vertex, 32, b2_staticBody);
 
-	
-	//b2CircleShape shape;
-	//shape.m_radius = PIXEL_TO_METERS(diameter) * 0.5f;
-
-	//b2FixtureDef fixture;
-	//fixture.shape = &shape;
-	//big_ball->CreateFixture(&fixture);
-
 	return true;
 }
 
