@@ -86,4 +86,8 @@ public:
 	void SetBoolstoFalse();
 
 	void DrawScore();
+
+	SDL_Rect game_menu_rect;
+	SDL_Rect game_menu_crop;
+	SDL_Texture* game_menu_texture;
 };

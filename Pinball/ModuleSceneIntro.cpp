@@ -14,6 +14,9 @@ ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Modul
 	ray_on = false;
 	sensed = false;
 	lives = 3; //Si quereis poner más vidas pues aqui teneis los datillos
+
+	game_menu_rect = { (SCREEN_WIDTH / 2) - 100, (SCREEN_HEIGHT / 2) - 64, 200, 128 };
+	game_menu_crop = { 0, 0, 200, 128 };
 }
 
 ModuleSceneIntro::~ModuleSceneIntro()
@@ -34,7 +37,8 @@ bool ModuleSceneIntro::Start()
 	ball = App->textures->Load("pinball/PinballAssets/PinballSprites/pinball.png");
 	wheel = App->textures->Load("pinball/PinballAssets/PinballSprites/wheel0.png");
 	bumper = App->textures->Load("pinball/PinballAssets/PinballSprites/bumperoff.png");
-	bumperOn = App->textures->Load("pinball/PinballAssets/PinballSprites/bumperon.png");
+	bumperOn = App->textures->Load("pinball/PinballAssets/PinballSprites/bumperon.png");	
+	game_menu_texture = App->textures->Load("pinball/PinballAssets/PinballSprites/popupmenu.png"); //Game OverMenu
 
 	//Fonts
 	OrangeFont = App->fonts->Load("Assets/Sprites/OrangeNumsNew.png", "0123456789", 1);
@@ -93,6 +97,8 @@ bool ModuleSceneIntro::CleanUp()
 	App->textures->Unload(YellowScoreText);
 	App->textures->Unload(OrangeScoreText);
 
+	if (game_stop == 0) App->textures->Unload(game_menu_texture);
+
 	return true;
 }
 
@@ -149,9 +155,9 @@ update_status ModuleSceneIntro::Update()
 		c->data->GetPosition(x, y);
 		if (y > SCREEN_HEIGHT)
 		{
-			LOG("%i/3 LIFES LOST", lives);
 			lives--;
 			circles.del(c);
+			LOG("%i/3 LIFES LOST", lives);
 			break;
 		}
 		else {
@@ -222,10 +228,13 @@ update_status ModuleSceneIntro::Update()
 		if (App->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN)
 		{
 			game_stop = 0;
-			LOG("**********GAME HAS RESUMED**********")
-		}
-		//enseñar score
-		//Hace falta enseñar el menú de "Press ENTER to play again and ESC to exit"
+			LOG("**********GAME HAS RESUMED**********");
+			if (lives == 0) lives = 3;
+		}		
+		//Falta enseñar la score
+		//Hace falta implementar que cuando pulses R se reinicie todo (la score, las vidas, la posici?n de las bolas, etc)
+
+		App->renderer->Blit(game_menu_texture, game_menu_rect.x, game_menu_rect.y, SDL_FLIP_NONE, &game_menu_crop);
 	}
 		
 	
@@ -238,34 +247,46 @@ void ModuleSceneIntro::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 
 	App->audio->PlayFx(bonus_fx);
 
-	//LOG("LA BOLA ESTÁ COLISIONANDO");
-
+	//LOG("LA BOLA ESTÁ COLISIONANDO");	
+	
+	//Estos colliders lo detectan todo como bumper o como ball aunque no lo sean por algun motivo.  
 	if (bodyA->type == ColliderType::BUMPER)
 	{
 		LOG("COLLISION BUMPER A");
-	}
+		score += 1000;
+		LOG("SCORE = %i", score);
+	}	
+
 	if (bodyB->type == ColliderType::BUMPER)
 	{
 		LOG("COLLISION BUMPER B");
-	}
+		score += 1000;
+		LOG("SCORE = %i", score);
+	}	
 
 	if (bodyA->type == ColliderType::BALL)
 	{
 		LOG("COLLISION BALL A");
+		score += 1000000;
+		LOG("SCORE = %i", score);
 	}
 	if (bodyB->type == ColliderType::BALL)
 	{
 		LOG("COLLISION BALL B");
-	}
+		score += 1000000;
+		LOG("SCORE = %i", score);
+	}	
+	
+	/*	
 	//LA BOLA colisona con un BUMPER de esos redonditos y azules (uwú)
+	LOG("COLISIONANDO CON %i, %i", METERS_TO_PIXELS(bodyB->body->GetPosition().x), METERS_TO_PIXELS(bodyB->body->GetPosition().y));
 	if ((METERS_TO_PIXELS((bodyB->body->GetPosition()) == bumper1Pos)) ||
 		(METERS_TO_PIXELS((bodyB->body->GetPosition()) == bumper2Pos)) ||
 		(METERS_TO_PIXELS((bodyB->body->GetPosition()) == bumper3Pos)))
 	{
-	/*	LOG("COLISIONANDO CON %i, %i", METERS_TO_PIXELS(bodyB->body->GetPosition().x), METERS_TO_PIXELS(bodyB->body->GetPosition().y));
 
 		score += 1000;
-		LOG("SCORE = %i", score);*/
+		LOG("SCORE = %i", score);
 	}
 
 	/*
@@ -279,12 +300,13 @@ void ModuleSceneIntro::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 	{
 		bodyB->GetPosition(x, y);
 		App->renderer->DrawCircle(x, y, 50, 100, 100, 100);
-	}*/
+	}
+	*/
 }
 
 void ModuleSceneIntro::AddScore(int multiply, int Addpoints)
 {
-	score += ScoreMultiply * Addpoints;
+	score += multiply * Addpoints;
 }
 
 void ModuleSceneIntro::DrawScore()
@@ -301,7 +323,5 @@ void ModuleSceneIntro::DrawScore()
 	char BallNumbers[10];
 	sprintf_s(BallNumbers, "%.1d", BallsNum);
 	App->fonts->Blit(650, 560, YellowFont, BallNumbers);
-
-
 
 }
