@@ -15,6 +15,7 @@ ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Modul
 	ray_on = false;
 	sensed = false;
 	lives = 3; //Si quereis poner más vidas pues aqui teneis los datillos
+	balls_left = 3;
 
 	game_menu_rect = { (SCREEN_WIDTH / 2) - 100, (SCREEN_HEIGHT / 2) - 64, 200, 128 };
 	game_menu_crop = { 0, 0, 200, 128 };
@@ -244,7 +245,7 @@ update_status ModuleSceneIntro::Update()
 			if (lives == 0) lives = 3;
 		}		
 		//Falta enseñar la score
-		//Hace falta implementar que cuando pulses R se reinicie todo (la score, las vidas, la posici?n de las bolas, etc)
+		//Hace falta implementar que cuando pulses R se reinicie todo (la score, las vidas, la posicion de las bolas, etc)
 
 		App->renderer->Blit(game_menu_texture, game_menu_rect.x, game_menu_rect.y, SDL_FLIP_NONE, &game_menu_crop);
 	}
@@ -263,6 +264,7 @@ void ModuleSceneIntro::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 	//LOG("LA BOLA ESTÁ COLISIONANDO");	
 	
 	//Estos colliders lo detectan todo como bumper o como ball aunque no lo sean por algun motivo.  
+	/*	
 	if (bodyA->type == ColliderType::BUMPER)
 	{
 		LOG("COLLISION BUMPER A");
@@ -289,8 +291,8 @@ void ModuleSceneIntro::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 		score += 1000000;
 		LOG("SCORE = %i", score);
 	}	
+	*/
 	
-	/*	
 	//LA BOLA colisona con un BUMPER de esos redonditos y azules (uwú)
 	LOG("COLISIONANDO CON %i, %i", METERS_TO_PIXELS(bodyB->body->GetPosition().x), METERS_TO_PIXELS(bodyB->body->GetPosition().y));
 	if ((METERS_TO_PIXELS((bodyB->body->GetPosition()) == bumper1Pos)) ||
@@ -298,10 +300,11 @@ void ModuleSceneIntro::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 		(METERS_TO_PIXELS((bodyB->body->GetPosition()) == bumper3Pos)))
 	{
 
-		score += 1000;
+		score += 10000;
 		LOG("SCORE = %i", score);
 	}
 
+	
 	/*
 	if(bodyA)
 	{

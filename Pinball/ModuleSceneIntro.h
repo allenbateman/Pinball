@@ -87,6 +87,7 @@ public:
 
 	int score;
 	int lives;
+	int balls_left;
 
 	bool win_condition;
 	bool game_stop;
