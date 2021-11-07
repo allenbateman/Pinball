@@ -1,4 +1,12 @@
 ﻿  Application.cpp
+  ModulePhysics.cpp
+D:\Usuarios\traxo\Documentos\GitHub\Pinball\Pinball\ModulePhysics.cpp(40,8): warning C4244: 'inicializando': conversión de 'float' a 'int'; posible pérdida de datos
+D:\Usuarios\traxo\Documentos\GitHub\Pinball\Pinball\ModulePhysics.cpp(525,23): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+D:\Usuarios\traxo\Documentos\GitHub\Pinball\Pinball\ModulePhysics.cpp(526,25): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+D:\Usuarios\traxo\Documentos\GitHub\Pinball\Pinball\ModulePhysics.cpp(569,20): warning C4018: '<': no coinciden signed/unsigned
+D:\Usuarios\traxo\Documentos\GitHub\Pinball\Pinball\ModulePhysics.cpp(807,13): warning C4244: 'inicializando': conversión de 'int' a 'float'; posible pérdida de datos
+D:\Usuarios\traxo\Documentos\GitHub\Pinball\Pinball\ModulePhysics.cpp(808,13): warning C4244: 'inicializando': conversión de 'int' a 'float'; posible pérdida de datos
+D:\Usuarios\traxo\Documentos\GitHub\Pinball\Pinball\ModulePhysics.cpp(814,27): warning C4244: 'return': conversión de 'float32' a 'int'; posible pérdida de datos
   ModulePlayer.cpp
 D:\Usuarios\traxo\Documentos\GitHub\Pinball\Pinball\ModulePlayer.cpp(80,69): warning C4244: 'argumento': conversión de 'float32' a 'int'; posible pérdida de datos
 D:\Usuarios\traxo\Documentos\GitHub\Pinball\Pinball\ModulePlayer.cpp(80,54): warning C4244: 'argumento': conversión de 'float32' a 'int'; posible pérdida de datos
@@ -113,4 +121,5 @@ D:\Usuarios\traxo\Documentos\GitHub\Pinball\Pinball\ModuleSceneIntro.cpp(220,34)
 D:\Usuarios\traxo\Documentos\GitHub\Pinball\Pinball\ModuleSceneIntro.cpp(260,9): warning C4101: 'y': variable local sin referencia
 D:\Usuarios\traxo\Documentos\GitHub\Pinball\Pinball\ModuleSceneIntro.cpp(260,6): warning C4101: 'x': variable local sin referencia
   Generando código...
+  LINK : no se encontró D:\Usuarios\traxo\Documentos\GitHub\Pinball\Pinball\Debug\2D Physics - class 4.exe o no lo generó el último vínculo incremental; ejecutando vínculo completo
   SDL Game.vcxproj -> D:\Usuarios\traxo\Documentos\GitHub\Pinball\Pinball\Debug\2D Physics - class 4.exe
