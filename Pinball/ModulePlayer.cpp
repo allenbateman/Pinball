@@ -7,6 +7,7 @@
 #include "ModuleAudio.h"
 #include "ModulePhysics.h"
 #include "ModulePlayer.h"
+#include "SDL_mixer/include/SDL_mixer.h"
 
 ModulePlayer::ModulePlayer(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
@@ -37,6 +38,18 @@ bool ModulePlayer::Start()
 
 	plungerSize = { 13,5 };
 	plungerForce = { 0,10 };
+	
+	startTime = SDL_GetTicks();
+	counterMusic = 0;
+	repetition = 1;
+
+	masterAudioOn = true;
+	SfxOn = true;
+	MusicOn = true;
+
+	sfx_bumper = App->audio->LoadFx("pinball/pinballAssets/pinballAudio/bumper1.wav");
+	sfx_fliper = App->audio->LoadFx("pinball/pinballAssets/pinballAudio/flip.wav");
+	sfx_fliper2 = App->audio->LoadFx("pinball/pinballAssets/pinballAudio/flip2.wav");
 
 	flipperVelocity = 20;
 
@@ -153,7 +166,12 @@ update_status ModulePlayer::Update()
 	else {
 		plungerForce.y = 10;
 	}
-
+	if (App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_STATE::KEY_DOWN)
+	{
+		if (masterAudioOn)
+			if (SfxOn)
+				App->audio->PlayFx(sfx_fliper2);
+	}
 	if (App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT) {
 	
 		//Left
@@ -184,6 +202,12 @@ update_status ModulePlayer::Update()
 			flipperUBody->body->SetAngularVelocity(0);
 	}
 
+	if (App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_STATE::KEY_DOWN)
+	{
+		if (masterAudioOn)
+			if (SfxOn)
+				App->audio->PlayFx(sfx_fliper);
+	}
 	if (App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
 	{
 		//Right

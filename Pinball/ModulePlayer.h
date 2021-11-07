@@ -44,6 +44,21 @@ public:
 	PhysBody* plungerAnchor;
 	b2Vec2 plungerSize;
 
+	bool masterAudioOn;
+	bool MusicOn;
+	bool SfxOn;
+
+	uint sfx_bumper;
+	uint sfx_fliper;
+	uint sfx_fliper2;
+
+	uint32_t startTime;
+
+	uint32_t currentTime;
+	int counterMusic;
+	int repetition;
+	bool afterStart = false;
+
 	int flipperVelocity;
 
 	//b2PrismaticJoint* plungerJoint;

@@ -62,6 +62,19 @@ public:
 	int OrangeFont;
 	int YellowFont;
 
+	bool masterAudioOn;
+	bool MusicOn;
+	bool SfxOn;
+
+	uint sfx_bumper;
+
+	uint32_t startTime;
+
+	uint32_t currentTime;
+	int counterMusic;
+	int repetition;
+	bool afterStart = false;
+
 	SDL_Texture* wheel;
 	SDL_Texture* bumper;
 	SDL_Texture* bumperOn;

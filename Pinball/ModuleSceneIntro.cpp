@@ -7,6 +7,7 @@
 #include "ModuleAudio.h"
 #include "ModulePhysics.h"
 #include "ModuleFonts.h"
+#include "SDL_mixer/include/SDL_mixer.h"
 
 ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
@@ -39,6 +40,17 @@ bool ModuleSceneIntro::Start()
 	bumper = App->textures->Load("pinball/PinballAssets/PinballSprites/bumperoff.png");
 	bumperOn = App->textures->Load("pinball/PinballAssets/PinballSprites/bumperon.png");	
 	game_menu_texture = App->textures->Load("pinball/PinballAssets/PinballSprites/popupmenu.png"); //Game OverMenu
+
+	//Audio
+	startTime = SDL_GetTicks();
+	counterMusic = 0;
+	repetition = 1;
+
+	masterAudioOn = true;
+	SfxOn = true;
+	MusicOn = true;
+
+	sfx_bumper = App->audio->LoadFx("pinball/pinballAssets/pinballAudio/bumper1.wav");
 
 	//Fonts
 	OrangeFont = App->fonts->Load("Assets/Sprites/OrangeNumsNew.png", "0123456789", 1);
@@ -236,7 +248,8 @@ update_status ModuleSceneIntro::Update()
 
 		App->renderer->Blit(game_menu_texture, game_menu_rect.x, game_menu_rect.y, SDL_FLIP_NONE, &game_menu_crop);
 	}
-		
+	
+	
 	
 	return UPDATE_CONTINUE;
 }
